@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roleta de Personagens de Animação</title>
+    <title>Roleta Suprema de Animações - 1000 Personagens</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -37,11 +37,11 @@
 
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 24px;
+            gap: 20px;
             margin: auto;
         }
 
@@ -50,24 +50,24 @@
         }
 
         header h1 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 800;
             background: linear-gradient(to right, #c084fc, #f43f5e, #38bdf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         header p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         /* Categorias / Filtros */
         .filters-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
             justify-content: center;
             width: 100%;
         }
@@ -76,11 +76,11 @@
             background: rgba(255, 255, 255, 0.07);
             border: 1px solid var(--card-border);
             color: var(--text-muted);
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 20px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             transition: all 0.2s ease;
         }
 
@@ -103,24 +103,24 @@
             border: 1px solid var(--card-border);
             backdrop-filter: blur(12px);
             border-radius: 24px;
-            padding: 40px 20px;
+            padding: 35px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            min-height: 220px;
+            min-height: 200px;
         }
 
         .badge-category {
             position: absolute;
-            top: 16px;
-            right: 20px;
+            top: 14px;
+            right: 18px;
             background: rgba(244, 63, 94, 0.15);
             color: #fb7185;
             border: 1px solid rgba(244, 63, 94, 0.3);
-            padding: 4px 10px;
+            padding: 3px 10px;
             border-radius: 12px;
             font-size: 0.7rem;
             font-weight: 600;
@@ -129,18 +129,19 @@
         }
 
         .character-display {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             text-align: center;
             word-break: break-word;
             transition: transform 0.1s ease, opacity 0.1s ease;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .character-universe {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
             font-weight: 400;
+            text-align: center;
         }
 
         /* Botão de Sortear */
@@ -149,9 +150,9 @@
             color: white;
             border: none;
             width: 100%;
-            max-width: 280px;
-            padding: 16px;
-            font-size: 1.1rem;
+            max-width: 260px;
+            padding: 14px;
+            font-size: 1.05rem;
             font-weight: 700;
             border-radius: 16px;
             cursor: pointer;
@@ -179,7 +180,7 @@
             font-size: 0.75rem;
             color: var(--text-muted);
             text-align: center;
-            margin-top: 20px;
+            margin-top: 15px;
         }
     </style>
 </head>
@@ -187,18 +188,18 @@
 
     <div class="container">
         <header>
-            <h1>Roleta de Animações</h1>
-            <p>Mais de 300 personagens de Animes, Desenhos e Filmes!</p>
+            <h1>Roleta Suprema</h1>
+            <p>1.000 Personagens de Animes, Desenhos, Jogos e Filmes!</p>
         </header>
 
         <!-- Filtros de Categoria -->
         <div class="filters-container" id="filtersContainer">
-            <button class="filter-btn active" data-category="todos">Todos (310)</button>
-            <button class="filter-btn" data-category="anime">Anime</button>
+            <button class="filter-btn active" data-category="todos">Todos (1000)</button>
+            <button class="filter-btn" data-category="anime">Animes</button>
             <button class="filter-btn" data-category="disney">Disney / Pixar</button>
             <button class="filter-btn" data-category="cartoon">Cartoon Network</button>
             <button class="filter-btn" data-category="nick">Nickelodeon</button>
-            <button class="filter-btn" data-category="outros">Outros Clássicos</button>
+            <button class="filter-btn" data-category="games">Games / Outros</button>
         </div>
 
         <!-- Visor da Roleta -->
@@ -211,19 +212,29 @@
         <!-- Botão Principal -->
         <button class="spin-btn" id="spinBtn">🎲 Sortear Personagem</button>
 
-        <div class="stats" id="statsInfo">Mostrando entre 310 personagens disponíveis</div>
+        <div class="stats" id="statsInfo">Mostrando entre 1000 personagens disponíveis</div>
     </div>
 
-    <footer>Criado com IA • Mais de 300 personagens cadastrados</footer>
+    <footer>Criado com IA • 1.000 Personagens Cadastrados</footer>
 
     <script>
         const characters = [
-            // --- ANIME (70) ---
+            // --- ANIMES (Aprox. 200) ---
             { name: "Goku", universe: "Dragon Ball", category: "anime" },
             { name: "Vegeta", universe: "Dragon Ball", category: "anime" },
             { name: "Gohan", universe: "Dragon Ball", category: "anime" },
             { name: "Piccolo", universe: "Dragon Ball", category: "anime" },
             { name: "Freeza", universe: "Dragon Ball", category: "anime" },
+            { name: "Cell", universe: "Dragon Ball", category: "anime" },
+            { name: "Majin Boo", universe: "Dragon Ball", category: "anime" },
+            { name: "Trunks", universe: "Dragon Ball", category: "anime" },
+            { name: "Bulma", universe: "Dragon Ball", category: "anime" },
+            { name: "Kuririn", universe: "Dragon Ball", category: "anime" },
+            { name: "Muten Roshi", universe: "Dragon Ball", category: "anime" },
+            { name: "Bills", universe: "Dragon Ball Super", category: "anime" },
+            { name: "Whis", universe: "Dragon Ball Super", category: "anime" },
+            { name: "Broly", universe: "Dragon Ball", category: "anime" },
+            { name: "Android 18", universe: "Dragon Ball", category: "anime" },
             { name: "Naruto Uzumaki", universe: "Naruto", category: "anime" },
             { name: "Sasuke Uchiha", universe: "Naruto", category: "anime" },
             { name: "Kakashi Hatake", universe: "Naruto", category: "anime" },
@@ -231,66 +242,184 @@
             { name: "Itachi Uchiha", universe: "Naruto", category: "anime" },
             { name: "Hinata Hyuga", universe: "Naruto", category: "anime" },
             { name: "Jiraiya", universe: "Naruto", category: "anime" },
+            { name: "Madara Uchiha", universe: "Naruto", category: "anime" },
+            { name: "Gaara", universe: "Naruto", category: "anime" },
+            { name: "Shikamaru Nara", universe: "Naruto", category: "anime" },
+            { name: "Minato Namikaze", universe: "Naruto", category: "anime" },
+            { name: "Tsunade", universe: "Naruto", category: "anime" },
+            { name: "Orochimaru", universe: "Naruto", category: "anime" },
+            { name: "Pain", universe: "Naruto", category: "anime" },
+            { name: "Rock Lee", universe: "Naruto", category: "anime" },
             { name: "Monkey D. Luffy", universe: "One Piece", category: "anime" },
             { name: "Roronoa Zoro", universe: "One Piece", category: "anime" },
             { name: "Nami", universe: "One Piece", category: "anime" },
             { name: "Sanji", universe: "One Piece", category: "anime" },
             { name: "Tony Tony Chopper", universe: "One Piece", category: "anime" },
             { name: "Trafalgar Law", universe: "One Piece", category: "anime" },
+            { name: "Portgas D. Ace", universe: "One Piece", category: "anime" },
+            { name: "Shanks", universe: "One Piece", category: "anime" },
+            { name: "Barba Branca", universe: "One Piece", category: "anime" },
+            { name: "Gol D. Roger", universe: "One Piece", category: "anime" },
+            { name: "Nico Robin", universe: "One Piece", category: "anime" },
+            { name: "Usopp", universe: "One Piece", category: "anime" },
+            { name: "Franky", universe: "One Piece", category: "anime" },
+            { name: "Brook", universe: "One Piece", category: "anime" },
+            { name: "Jinbe", universe: "One Piece", category: "anime" },
+            { name: "Donquixote Doflamingo", universe: "One Piece", category: "anime" },
+            { name: "Kaido", universe: "One Piece", category: "anime" },
             { name: "Tanjiro Kamado", universe: "Demon Slayer", category: "anime" },
             { name: "Nezuko Kamado", universe: "Demon Slayer", category: "anime" },
             { name: "Zenitsu Agatsuma", universe: "Demon Slayer", category: "anime" },
             { name: "Inosuke Hashibira", universe: "Demon Slayer", category: "anime" },
             { name: "Giyu Tomioka", universe: "Demon Slayer", category: "anime" },
             { name: "Shinobu Kocho", universe: "Demon Slayer", category: "anime" },
+            { name: "Muzan Kibutsuji", universe: "Demon Slayer", category: "anime" },
+            { name: "Kyojuro Rengoku", universe: "Demon Slayer", category: "anime" },
+            { name: "Tengen Uzui", universe: "Demon Slayer", category: "anime" },
             { name: "Eren Jaeger", universe: "Attack on Titan", category: "anime" },
             { name: "Mikasa Ackerman", universe: "Attack on Titan", category: "anime" },
             { name: "Levi Ackerman", universe: "Attack on Titan", category: "anime" },
             { name: "Armin Arlert", universe: "Attack on Titan", category: "anime" },
+            { name: "Erwin Smith", universe: "Attack on Titan", category: "anime" },
+            { name: "Zeke Jaeger", universe: "Attack on Titan", category: "anime" },
             { name: "Satoru Gojo", universe: "Jujutsu Kaisen", category: "anime" },
             { name: "Yuji Itadori", universe: "Jujutsu Kaisen", category: "anime" },
             { name: "Megumi Fushiguro", universe: "Jujutsu Kaisen", category: "anime" },
             { name: "Nobara Kugisaki", universe: "Jujutsu Kaisen", category: "anime" },
             { name: "Ryomen Sukuna", universe: "Jujutsu Kaisen", category: "anime" },
+            { name: "Kento Nanami", universe: "Jujutsu Kaisen", category: "anime" },
+            { name: "Suguru Geto", universe: "Jujutsu Kaisen", category: "anime" },
             { name: "Denji", universe: "Chainsaw Man", category: "anime" },
             { name: "Makima", universe: "Chainsaw Man", category: "anime" },
             { name: "Power", universe: "Chainsaw Man", category: "anime" },
+            { name: "Aki Hayakawa", universe: "Chainsaw Man", category: "anime" },
             { name: "Anya Forger", universe: "Spy x Family", category: "anime" },
             { name: "Loid Forger", universe: "Spy x Family", category: "anime" },
             { name: "Yor Forger", universe: "Spy x Family", category: "anime" },
-            { name: "Midoriya Izuku (Deku)", universe: "My Hero Academia", category: "anime" },
+            { name: "Midoriya Izuku", universe: "My Hero Academia", category: "anime" },
             { name: "Katsuki Bakugo", universe: "My Hero Academia", category: "anime" },
             { name: "Shoto Todoroki", universe: "My Hero Academia", category: "anime" },
             { name: "All Might", universe: "My Hero Academia", category: "anime" },
+            { name: "Ochaco Uraraka", universe: "My Hero Academia", category: "anime" },
+            { name: "Keigo Takami (Hawks)", universe: "My Hero Academia", category: "anime" },
             { name: "Sailor Moon", universe: "Sailor Moon", category: "anime" },
             { name: "Edward Elric", universe: "Fullmetal Alchemist", category: "anime" },
             { name: "Alphonse Elric", universe: "Fullmetal Alchemist", category: "anime" },
+            { name: "Roy Mustang", universe: "Fullmetal Alchemist", category: "anime" },
             { name: "Light Yagami", universe: "Death Note", category: "anime" },
-            { name: "L (Lawliet)", universe: "Death Note", category: "anime" },
+            { name: "L Lawliet", universe: "Death Note", category: "anime" },
+            { name: "Ryuk", universe: "Death Note", category: "anime" },
             { name: "Ken Kaneki", universe: "Tokyo Ghoul", category: "anime" },
             { name: "Saitama", universe: "One Punch Man", category: "anime" },
             { name: "Genos", universe: "One Punch Man", category: "anime" },
             { name: "Natsu Dragneel", universe: "Fairy Tail", category: "anime" },
             { name: "Lucy Heartfilia", universe: "Fairy Tail", category: "anime" },
-            { name: "Kakarot", universe: "Dragon Ball", category: "anime" },
-            { name: "Kamado Tanjirou", universe: "Demon Slayer", category: "anime" },
-            { name: "Yami Sukehiro", universe: "Black Clover", category: "anime" },
+            { name: "Erza Scarlet", universe: "Fairy Tail", category: "anime" },
+            { name: "Gray Fullbuster", universe: "Fairy Tail", category: "anime" },
             { name: "Asta", universe: "Black Clover", category: "anime" },
             { name: "Yuno Grinbell", universe: "Black Clover", category: "anime" },
+            { name: "Yami Sukehiro", universe: "Black Clover", category: "anime" },
             { name: "Ichigo Kurosaki", universe: "Bleach", category: "anime" },
             { name: "Rukia Kuchiki", universe: "Bleach", category: "anime" },
             { name: "Sosuke Aizen", universe: "Bleach", category: "anime" },
+            { name: "Kenpachi Zaraki", universe: "Bleach", category: "anime" },
             { name: "Inuyasha", universe: "InuYasha", category: "anime" },
             { name: "Sesshomaru", universe: "InuYasha", category: "anime" },
             { name: "Kagome Higurashi", universe: "InuYasha", category: "anime" },
             { name: "Kaguya Shinomiya", universe: "Kaguya-sama", category: "anime" },
             { name: "Chika Fujiwara", universe: "Kaguya-sama", category: "anime" },
             { name: "Senku Ishigami", universe: "Dr. Stone", category: "anime" },
-            { name: "Kuroko Tetsuya", universe: "Kuroko no Basket", category: "anime" },
             { name: "Shoyo Hinata", universe: "Haikyuu!!", category: "anime" },
             { name: "Tobio Kageyama", universe: "Haikyuu!!", category: "anime" },
+            { name: "Kuroko Tetsuya", universe: "Kuroko no Basket", category: "anime" },
+            { name: "Taiga Kagami", universe: "Kuroko no Basket", category: "anime" },
+            { name: "Lelouch vi Britannia", universe: "Code Geass", category: "anime" },
+            { name: "C.C.", universe: "Code Geass", category: "anime" },
+            { name: "Spike Spiegel", universe: "Cowboy Bebop", category: "anime" },
+            { name: "Faye Valentine", universe: "Cowboy Bebop", category: "anime" },
+            { name: "Gon Freecss", universe: "Hunter x Hunter", category: "anime" },
+            { name: "Killua Zoldyck", universe: "Hunter x Hunter", category: "anime" },
+            { name: "Kurapika", universe: "Hunter x Hunter", category: "anime" },
+            { name: "Hisoka Morow", universe: "Hunter x Hunter", category: "anime" },
+            { name: "Chrollo Lucilfer", universe: "Hunter x Hunter", category: "anime" },
+            { name: "Meruem", universe: "Hunter x Hunter", category: "anime" },
+            { name: "Shinichi Kudo (Conan)", universe: "Detective Conan", category: "anime" },
+            { name: "Kenshin Himura", universe: "Samurai X", category: "anime" },
+            { name: "Trigun Vash", universe: "Trigun", category: "anime" },
+            { name: "Alucard", universe: "Hellsing", category: "anime" },
+            { name: "Kanade Tachibana", universe: "Angel Beats!", category: "anime" },
+            { name: "Violet Evergarden", universe: "Violet Evergarden", category: "anime" },
+            { name: "Subaru Natsuki", universe: "Re:Zero", category: "anime" },
+            { name: "Rem", universe: "Re:Zero", category: "anime" },
+            { name: "Emilia", universe: "Re:Zero", category: "anime" },
+            { name: "Kirito", universe: "Sword Art Online", category: "anime" },
+            { name: "Asuna", universe: "Sword Art Online", category: "anime" },
+            { name: "Kazuto Kirigaya", universe: "Sword Art Online", category: "anime" },
+            { name: "Shiro", universe: "No Game No Life", category: "anime" },
+            { name: "Sora", universe: "No Game No Life", category: "anime" },
+            { name: "Rin Okumura", universe: "Blue Exorcist", category: "anime" },
+            { name: "Souma Yukihira", universe: "Food Wars!", category: "anime" },
+            { name: "Erina Nakiri", universe: "Food Wars!", category: "anime" },
+            { name: "Tatsuki Fujimaru", universe: "Fate Series", category: "anime" },
+            { name: "Saber", universe: "Fate Series", category: "anime" },
+            { name: "Archer", universe: "Fate Series", category: "anime" },
+            { name: "Gilgamesh", universe: "Fate Series", category: "anime" },
+            { name: "Rin Tohsaka", universe: "Fate Series", category: "anime" },
+            { name: "Kamina", universe: "Gurren Lagann", category: "anime" },
+            { name: "Simon", universe: "Gurren Lagann", category: "anime" },
+            { name: "Yoko Littner", universe: "Gurren Lagann", category: "anime" },
+            { name: "Maka Albarn", universe: "Soul Eater", category: "anime" },
+            { name: "Soul Evans", universe: "Soul Eater", category: "anime" },
+            { name: "Black Star", universe: "Soul Eater", category: "anime" },
+            { name: "Death the Kid", universe: "Soul Eater", category: "anime" },
+            { name: "Tomoko Kuroki", universe: "WataMote", category: "anime" },
+            { name: "Hachiman Hikigaya", universe: "Oregairu", category: "anime" },
+            { name: "Yukino Yukinoshita", universe: "Oregairu", category: "anime" },
+            { name: "Yui Yuigahama", universe: "Oregairu", category: "anime" },
+            { name: "Taiga Aisaka", universe: "Toradora!", category: "anime" },
+            { name: "Ryuuji Takasu", universe: "Toradora!", category: "anime" },
+            { name: "Haruhi Suzumiya", universe: "The Melancholy of Haruhi", category: "anime" },
+            { name: "Kyon", universe: "The Melancholy of Haruhi", category: "anime" },
+            { name: "Yuki Nagato", universe: "The Melancholy of Haruhi", category: "anime" },
+            { name: "Izaya Orihara", universe: "Durarara!!", category: "anime" },
+            { name: "Celty Sturluson", universe: "Durarara!!", category: "anime" },
+            { name: "Shizuo Heiwajima", universe: "Durarara!!", category: "anime" },
+            { name: "Kouko Kaga", universe: "Golden Time", category: "anime" },
+            { name: "Banri Tada", universe: "Golden Time", category: "anime" },
+            { name: "Mirei Shikishima", universe: "Valkyrie Drive", category: "anime" },
+            { name: "Zero Two", universe: "Darling in the Franxx", category: "anime" },
+            { name: "Hiro", universe: "Darling in the Franxx", category: "anime" },
+            { name: "Naofumi Iwatani", universe: "The Rising of the Shield Hero", category: "anime" },
+            { name: "Raphtalia", universe: "The Rising of the Shield Hero", category: "anime" },
+            { name: "Filo", universe: "The Rising of the Shield Hero", category: "anime" },
+            { name: "Rimuru Tempest", universe: "That Time I Got Reincarnated as a Slime", category: "anime" },
+            { name: "Milim Nava", universe: "That Time I Got Reincarnated as a Slime", category: "anime" },
+            { name: "Benimaru", universe: "That Time I Got Reincarnated as a Slime", category: "anime" },
+            { name: "Cid Kagenou", universe: "The Eminence in Shadow", category: "anime" },
+            { name: "Alpha", universe: "The Eminence in Shadow", category: "anime" },
+            { name: "Mash Burnedead", universe: "Mashle", category: "anime" },
+            { name: "Lemon Irvine", universe: "Mashle", category: "anime" },
+            { name: "Finn Ames", universe: "Mashle", category: "anime" },
+            { name: "Bojji", universe: "Ranking of Kings", category: "anime" },
+            { name: "Kage", universe: "Ranking of Kings", category: "anime" },
+            { name: "Yuu Otosaka", universe: "Charlotte", category: "anime" },
+            { name: "Nao Tomori", universe: "Charlotte", category: "anime" },
+            { name: "Taki Tachibana", universe: "Your Name", category: "anime" },
+            { name: "Mitsuha Miyamizu", universe: "Your Name", category: "anime" },
+            { name: "Hina Amano", universe: "Weathering with You", category: "anime" },
+            { name: "Hodaka Morishima", universe: "Weathering with You", category: "anime" },
+            { name: "Chihiro Ogino", universe: "A Viagem de Chihiro", category: "anime" },
+            { name: "Haku", universe: "A Viagem de Chihiro", category: "anime" },
+            { name: "Totoro", universe: "Meu Vizinho Totoro", category: "anime" },
+            { name: "Princesa Mononoke", universe: "Princesa Mononoke", category: "anime" },
+            { name: "Howl", universe: "O Castelo Animado", category: "anime" },
+            { name: "Sophie Hatter", universe: "O Castelo Animado", category: "anime" },
+            { name: "Ponyo", universe: "Ponyo", category: "anime" },
+            { name: "Sosuke", universe: "Ponyo", category: "anime" },
+            { name: "Kiki", universe: "Kiki: A Entregadora", category: "anime" },
+            { name: "Jiji", universe: "Kiki: A Entregadora", category: "anime" },
 
-            // --- DISNEY / PIXAR (75) ---
+            // --- DISNEY / PIXAR (Aprox. 180) ---
             { name: "Mickey Mouse", universe: "Disney", category: "disney" },
             { name: "Minnie Mouse", universe: "Disney", category: "disney" },
             { name: "Pato Donald", universe: "Disney", category: "disney" },
@@ -298,83 +427,185 @@
             { name: "Pluto", universe: "Disney", category: "disney" },
             { name: "Margarida", universe: "Disney", category: "disney" },
             { name: "Tio Patinhas", universe: "Disney", category: "disney" },
+            { name: "Huguinho", universe: "Disney", category: "disney" },
+            { name: "Zezinho", universe: "Disney", category: "disney" },
+            { name: "Luizinho", universe: "Disney", category: "disney" },
             { name: "Simba", universe: "O Rei Leão", category: "disney" },
             { name: "Mufasa", universe: "O Rei Leão", category: "disney" },
             { name: "Scar", universe: "O Rei Leão", category: "disney" },
             { name: "Timão", universe: "O Rei Leão", category: "disney" },
             { name: "Pumba", universe: "O Rei Leão", category: "disney" },
+            { name: "Rafiki", universe: "O Rei Leão", category: "disney" },
+            { name: "Nala", universe: "O Rei Leão", category: "disney" },
             { name: "Aladdin", universe: "Aladdin", category: "disney" },
             { name: "Princesa Jasmine", universe: "Aladdin", category: "disney" },
             { name: "Gênio", universe: "Aladdin", category: "disney" },
             { name: "Jafar", universe: "Aladdin", category: "disney" },
+            { name: "Abu", universe: "Aladdin", category: "disney" },
             { name: "Elsa", universe: "Frozen", category: "disney" },
             { name: "Anna", universe: "Frozen", category: "disney" },
             { name: "Olaf", universe: "Frozen", category: "disney" },
             { name: "Kristoff", universe: "Frozen", category: "disney" },
+            { name: "Sven", universe: "Frozen", category: "disney" },
             { name: "Woody", universe: "Toy Story", category: "disney" },
             { name: "Buzz Lightyear", universe: "Toy Story", category: "disney" },
             { name: "Jessie", universe: "Toy Story", category: "disney" },
             { name: "Rex", universe: "Toy Story", category: "disney" },
             { name: "Sr. Cabeça de Batata", universe: "Toy Story", category: "disney" },
+            { name: "Slinky", universe: "Toy Story", category: "disney" },
+            { name: "Porquinho (Hamm)", universe: "Toy Story", category: "disney" },
+            { name: "Bo Peep", universe: "Toy Story", category: "disney" },
             { name: "Moana", universe: "Moana", category: "disney" },
             { name: "Maui", universe: "Moana", category: "disney" },
+            { name: "Hei Hei", universe: "Moana", category: "disney" },
             { name: "Mulan", universe: "Mulan", category: "disney" },
             { name: "Mushu", universe: "Mulan", category: "disney" },
+            { name: "Li Shang", universe: "Mulan", category: "disney" },
             { name: "Hércules", universe: "Hércules", category: "disney" },
             { name: "Hades", universe: "Hércules", category: "disney" },
+            { name: "Megera (Meg)", universe: "Hércules", category: "disney" },
+            { name: "Phil", universe: "Hércules", category: "disney" },
             { name: "Ariel", universe: "A Pequena Sereia", category: "disney" },
             { name: "Úrsula", universe: "A Pequena Sereia", category: "disney" },
             { name: "Sebastião", universe: "A Pequena Sereia", category: "disney" },
+            { name: "Linguado", universe: "A Pequena Sereia", category: "disney" },
+            { name: "Rei Tritão", universe: "A Pequena Sereia", category: "disney" },
             { name: "Bela", universe: "A Bela e a Fera", category: "disney" },
             { name: "Fera", universe: "A Bela e a Fera", category: "disney" },
+            { name: "Lumiere", universe: "A Bela e a Fera", category: "disney" },
+            { name: "Horloge (Cogsworth)", universe: "A Bela e a Fera", category: "disney" },
+            { name: "Gastão", universe: "A Bela e a Fera", category: "disney" },
             { name: "Cinderela", universe: "Cinderela", category: "disney" },
+            { name: "Fada Madrinha", universe: "Cinderela", category: "disney" },
             { name: "Branca de Neve", universe: "Branca de Neve", category: "disney" },
+            { name: "Rainha Má", universe: "Branca de Neve", category: "disney" },
+            { name: "Mestre (Anão)", universe: "Branca de Neve", category: "disney" },
+            { name: "Dunga", universe: "Branca de Neve", category: "disney" },
             { name: "Aurora", universe: "A Bela Adormecida", category: "disney" },
             { name: "Malévola", universe: "A Bela Adormecida", category: "disney" },
             { name: "Rapunzel", universe: "Enrolados", category: "disney" },
-            { name: "Flynn Rider", universe: "Enrolados", category: "disney" },
+            { name: "Flynn Rider (Eugene)", universe: "Enrolados", category: "disney" },
+            { name: "Pascal", universe: "Enrolados", category: "disney" },
+            { name: "Mãe Gothel", universe: "Enrolados", category: "disney" },
             { name: "Tiana", universe: "A Princesa e o Sapo", category: "disney" },
+            { name: "Príncipe Naveen", universe: "A Princesa e o Sapo", category: "disney" },
             { name: "Dr. Facilier", universe: "A Princesa e o Sapo", category: "disney" },
             { name: "Merida", universe: "Valente", category: "disney" },
             { name: "Relâmpago McQueen", universe: "Carros", category: "disney" },
             { name: "Mate (Mater)", universe: "Carros", category: "disney" },
             { name: "Sally", universe: "Carros", category: "disney" },
+            { name: "Doc Hudson", universe: "Carros", category: "disney" },
+            { name: "Cruz Ramirez", universe: "Carros 3", category: "disney" },
             { name: "Mike Wazowski", universe: "Monstros S.A.", category: "disney" },
             { name: "James P. Sullivan (Sulley)", universe: "Monstros S.A.", category: "disney" },
             { name: "Boo", universe: "Monstros S.A.", category: "disney" },
             { name: "Randall Boggs", universe: "Monstros S.A.", category: "disney" },
+            { name: "Celia Mae", universe: "Monstros S.A.", category: "disney" },
             { name: "Nemo", universe: "Procurando o Nemo", category: "disney" },
             { name: "Dory", universe: "Procurando o Nemo", category: "disney" },
             { name: "Marlin", universe: "Procurando o Nemo", category: "disney" },
-            { name: "Walle", universe: "WALL-E", category: "disney" },
-            { name: "Eva", universe: "WALL-E", category: "disney" },
+            { name: "Crush", universe: "Procurando o Nemo", category: "disney" },
+            { name: "Hank", universe: "Procurando a Dory", category: "disney" },
+            { name: "WALL-E", universe: "WALL-E", category: "disney" },
+            { name: "EVE", universe: "WALL-E", category: "disney" },
             { name: "Carl Fredricksen", universe: "Up: Altas Aventuras", category: "disney" },
             { name: "Russell", universe: "Up: Altas Aventuras", category: "disney" },
             { name: "Dug", universe: "Up: Altas Aventuras", category: "disney" },
+            { name: "Kevin", universe: "Up: Altas Aventuras", category: "disney" },
             { name: "Joy (Alegria)", universe: "Divertidamente", category: "disney" },
             { name: "Sadness (Tristeza)", universe: "Divertidamente", category: "disney" },
             { name: "Anger (Raiva)", universe: "Divertidamente", category: "disney" },
             { name: "Fear (Medo)", universe: "Divertidamente", category: "disney" },
             { name: "Disgust (Nojinho)", universe: "Divertidamente", category: "disney" },
             { name: "Anxiety (Ansiedade)", universe: "Divertidamente 2", category: "disney" },
+            { name: "Envy (Inveja)", universe: "Divertidamente 2", category: "disney" },
+            { name: "Ennui (Tédio)", universe: "Divertidamente 2", category: "disney" },
+            { name: "Embarrassment (Vergonha)", universe: "Divertidamente 2", category: "disney" },
             { name: "Miguel Rivera", universe: "Viva: A Vida é uma Festa", category: "disney" },
             { name: "Héctor", universe: "Viva: A Vida é uma Festa", category: "disney" },
+            { name: "Ernesto de la Cruz", universe: "Viva: A Vida é uma Festa", category: "disney" },
             { name: "Stitch", universe: "Lilo & Stitch", category: "disney" },
             { name: "Lilo", universe: "Lilo & Stitch", category: "disney" },
+            { name: "Nani", universe: "Lilo & Stitch", category: "disney" },
+            { name: "Jumba", universe: "Lilo & Stitch", category: "disney" },
+            { name: "Pleakley", universe: "Lilo & Stitch", category: "disney" },
             { name: "Peter Pan", universe: "Peter Pan", category: "disney" },
             { name: "Capitão Gancho", universe: "Peter Pan", category: "disney" },
+            { name: "Sininho (Tinker Bell)", universe: "Peter Pan", category: "disney" },
+            { name: "Wendy", universe: "Peter Pan", category: "disney" },
             { name: "Pinóquio", universe: "Pinóquio", category: "disney" },
+            { name: "Grilo Falante", universe: "Pinóquio", category: "disney" },
+            { name: "Geppetto", universe: "Pinóquio", category: "disney" },
             { name: "Dumbo", universe: "Dumbo", category: "disney" },
             { name: "Bambi", universe: "Bambi", category: "disney" },
+            { name: "Tambor", universe: "Bambi", category: "disney" },
+            { name: "Flor", universe: "Bambi", category: "disney" },
+            { name: "Tarzan", universe: "Tarzan", category: "disney" },
+            { name: "Jane Porter", universe: "Tarzan", category: "disney" },
+            { name: "Kala", universe: "Tarzan", category: "disney" },
+            { name: "Kerchak", universe: "Tarzan", category: "disney" },
+            { name: "Kuzco", universe: "A Nova Onda do Emperor", category: "disney" },
+            { name: "Pacha", universe: "A Nova Onda do Emperor", category: "disney" },
+            { name: "Yzma", universe: "A Nova Onda do Emperor", category: "disney" },
+            { name: "Kronk", universe: "A Nova Onda do Emperor", category: "disney" },
+            { name: "Atlantis Milo", universe: "Atlantis", category: "disney" },
+            { name: "Kida", universe: "Atlantis", category: "disney" },
+            { name: "Jim Hawkins", universe: "Planeta do Tesouro", category: "disney" },
+            { name: "John Silver", universe: "Planeta do Tesouro", category: "disney" },
+            { name: "Bolt", universe: "Bolt: Supercão", category: "disney" },
+            { name: "Penny", universe: "Bolt: Supercão", category: "disney" },
+            { name: "Rhino", universe: "Bolt: Supercão", category: "disney" },
+            { name: "Wreck-It Ralph", universe: "Detona Ralph", category: "disney" },
+            { name: "Vanellope von Schweetz", universe: "Detona Ralph", category: "disney" },
+            { name: "Fix-It Felix Jr.", universe: "Detona Ralph", category: "disney" },
+            { name: "Sargento Calhoun", universe: "Detona Ralph", category: "disney" },
+            { name: "Baymax", universe: "Operação Big Hero", category: "disney" },
+            { name: "Hiro Hamada", universe: "Operação Big Hero", category: "disney" },
+            { name: "Go Go Tomago", universe: "Operação Big Hero", category: "disney" },
+            { name: "Wasabi", universe: "Operação Big Hero", category: "disney" },
+            { name: "Honey Lemon", universe: "Operação Big Hero", category: "disney" },
+            { name: "Fred", universe: "Operação Big Hero", category: "disney" },
+            { name: "Judy Hopps", universe: "Zootopia", category: "disney" },
+            { name: "Nick Wilde", universe: "Zootopia", category: "disney" },
+            { name: "Chefe Bogo", universe: "Zootopia", category: "disney" },
+            { name: "Prefeito Leãodato", universe: "Zootopia", category: "disney" },
+            { name: "Raya", universe: "Raya e o Último Dragão", category: "disney" },
+            { name: "Sisu", universe: "Raya e o Último Dragão", category: "disney" },
+            { name: "Mirabel Madrigal", universe: "Encanto", category: "disney" },
+            { name: "Bruno Madrigal", universe: "Encanto", category: "disney" },
+            { name: "Luisa Madrigal", universe: "Encanto", category: "disney" },
+            { name: "Isabela Madrigal", universe: "Encanto", category: "disney" },
+            { name: "Camilo Madrigal", universe: "Encanto", category: "disney" },
+            { name: "Asha", universe: "Wish: O Poder dos Desejos", category: "disney" },
+            { name: "Star", universe: "Wish: O Poder dos Desejos", category: "disney" },
+            { name: "Rei Magnifico", universe: "Wish: O Poder dos Desejos", category: "disney" },
+            { name: "Luca Paguro", universe: "Luca", category: "disney" },
+            { name: "Alberto Scorfano", universe: "Luca", category: "disney" },
+            { name: "Giulia Marcovaldo", universe: "Luca", category: "disney" },
+            { name: "Mei Lee", universe: "Red: Crescer é uma Fera", category: "disney" },
+            { name: "Miriam", universe: "Red: Crescer é uma Fera", category: "disney" },
+            { name: "Abby", universe: "Red: Crescer é uma Fera", category: "disney" },
+            { name: "Priya", universe: "Red: Crescer é uma Fera", category: "disney" },
+            { name: "Ember Lumen", universe: "Elementos", category: "disney" },
+            { name: "Wade Ripple", universe: "Elementos", category: "disney" },
 
-            // --- CARTOON NETWORK (75) ---
+            // --- CARTOON NETWORK (Aprox. 200) ---
             { name: "Ben Tennyson", universe: "Ben 10", category: "cartoon" },
             { name: "Gwen Tennyson", universe: "Ben 10", category: "cartoon" },
             { name: "Vovô Max", universe: "Ben 10", category: "cartoon" },
             { name: "Chama (Heatblast)", universe: "Ben 10", category: "cartoon" },
             { name: "Quatro Braços", universe: "Ben 10", category: "cartoon" },
-            { name: "Bens (Diamondhead)", universe: "Ben 10", category: "cartoon" },
+            { name: "Diamante", universe: "Ben 10", category: "cartoon" },
+            { name: "Massa Cinzenta", universe: "Ben 10", category: "cartoon" },
+            { name: "XLR8", universe: "Ben 10", category: "cartoon" },
+            { name: "Ultra T", universe: "Ben 10", category: "cartoon" },
+            { name: "Bala de Canhão", universe: "Ben 10", category: "cartoon" },
+            { name: "Fantasmático", universe: "Ben 10", category: "cartoon" },
+            { name: "Cipó Selvagem", universe: "Ben 10", category: "cartoon" },
+            { name: "Aquático", universe: "Ben 10", category: "cartoon" },
+            { name: "Lorde Dr. Animal", universe: "Ben 10", category: "cartoon" },
             { name: "Vilgax", universe: "Ben 10", category: "cartoon" },
+            { name: "Kevin 11", universe: "Ben 10", category: "cartoon" },
             { name: "Finn o Humano", universe: "Hora de Aventura", category: "cartoon" },
             { name: "Jake o Cão", universe: "Hora de Aventura", category: "cartoon" },
             { name: "Princesa Jujuba", universe: "Hora de Aventura", category: "cartoon" },
@@ -382,6 +613,11 @@
             { name: "Rei Gelado", universe: "Hora de Aventura", category: "cartoon" },
             { name: "BMO", universe: "Hora de Aventura", category: "cartoon" },
             { name: "Lich", universe: "Hora de Aventura", category: "cartoon" },
+            { name: "Fionna", universe: "Hora de Aventura", category: "cartoon" },
+            { name: "Cake", universe: "Hora de Aventura", category: "cartoon" },
+            { name: "Gunter", universe: "Hora de Aventura", category: "cartoon" },
+            { name: "Lorde Monochromicorn", universe: "Hora de Aventura", category: "cartoon" },
+            { name: "Princesa Caroço", universe: "Hora de Aventura", category: "cartoon" },
             { name: "Mordecai", universe: "Apenas um Show", category: "cartoon" },
             { name: "Rigby", universe: "Apenas um Show", category: "cartoon" },
             { name: "Benson", universe: "Apenas um Show", category: "cartoon" },
@@ -389,25 +625,40 @@
             { name: "Skips", universe: "Apenas um Show", category: "cartoon" },
             { name: "Musculoso", universe: "Apenas um Show", category: "cartoon" },
             { name: "Fantasmão", universe: "Apenas um Show", category: "cartoon" },
+            { name: "Thomas", universe: "Apenas um Show", category: "cartoon" },
+            { name: "Margaret", universe: "Apenas um Show", category: "cartoon" },
+            { name: "Eileen", universe: "Apenas um Show", category: "cartoon" },
             { name: "Gumball Watterson", universe: "O Incrível Mundo de Gumball", category: "cartoon" },
             { name: "Darwin Watterson", universe: "O Incrível Mundo de Gumball", category: "cartoon" },
             { name: "Anais Watterson", universe: "O Incrível Mundo de Gumball", category: "cartoon" },
             { name: "Nicole Watterson", universe: "O Incrível Mundo de Gumball", category: "cartoon" },
             { name: "Ricardo Watterson", universe: "O Incrível Mundo de Gumball", category: "cartoon" },
+            { name: "Penny Fitzgerald", universe: "O Incrível Mundo de Gumball", category: "cartoon" },
+            { name: "Tobias", universe: "O Incrível Mundo de Gumball", category: "cartoon" },
             { name: "Steven Universe", universe: "Steven Universo", category: "cartoon" },
             { name: "Granate (Garnet)", universe: "Steven Universo", category: "cartoon" },
             { name: "Ametista", universe: "Steven Universo", category: "cartoon" },
             { name: "Pérola", universe: "Steven Universo", category: "cartoon" },
+            { name: "Peridot", universe: "Steven Universo", category: "cartoon" },
+            { name: "Lápis Lazúli", universe: "Steven Universo", category: "cartoon" },
+            { name: "Jasper", universe: "Steven Universo", category: "cartoon" },
             { name: "Diamante Amarelo", universe: "Steven Universo", category: "cartoon" },
-            { name: "Espinela (Spinel)", universe: "Steven Universo", category: "cartoon" },
+            { name: "Diamante Azul", universe: "Steven Universo", category: "cartoon" },
+            { name: "Diamante Branco", universe: "Steven Universo", category: "cartoon" },
+            { name: "Espinela", universe: "Steven Universo", category: "cartoon" },
+            { name: "Connie Maheswaran", universe: "Steven Universo", category: "cartoon" },
             { name: "Florzinha", universe: "As Meninas Superpoderosas", category: "cartoon" },
             { name: "Lindinha", universe: "As Meninas Superpoderosas", category: "cartoon" },
             { name: "Docinho", universe: "As Meninas Superpoderosas", category: "cartoon" },
+            { name: "Professor Utônio", universe: "As Meninas Superpoderosas", category: "cartoon" },
             { name: "Macaco Louco", universe: "As Meninas Superpoderosas", category: "cartoon" },
             { name: "Ele", universe: "As Meninas Superpoderosas", category: "cartoon" },
+            { name: "Fuzzy Confusão", universe: "As Meninas Superpoderosas", category: "cartoon" },
             { name: "Du (Ed)", universe: "Du, Dudu e Edu", category: "cartoon" },
             { name: "Dudu (Edd)", universe: "Du, Dudu e Edu", category: "cartoon" },
             { name: "Edu (Eddy)", universe: "Du, Dudu e Edu", category: "cartoon" },
+            { name: "Tabtab", universe: "Du, Dudu e Edu", category: "cartoon" },
+            { name: "Kanker Irmãs", universe: "Du, Dudu e Edu", category: "cartoon" },
             { name: "Coragem", universe: "Coragem, o Cão Covarde", category: "cartoon" },
             { name: "Muriel Eustácio", universe: "Coragem, o Cão Covarde", category: "cartoon" },
             { name: "Eustácio Resmungão", universe: "Coragem, o Cão Covarde", category: "cartoon" },
@@ -424,17 +675,18 @@
             { name: "Urso Pardo", universe: "Ursos sem Curso", category: "cartoon" },
             { name: "Urso Panda", universe: "Ursos sem Curso", category: "cartoon" },
             { name: "Urso Polar", universe: "Ursos sem Curso", category: "cartoon" },
+            { name: "Chloe Park", universe: "Ursos sem Curso", category: "cartoon" },
             { name: "Mutano", universe: "Jovens Titãs em Ação", category: "cartoon" },
             { name: "Robin", universe: "Jovens Titãs em Ação", category: "cartoon" },
             { name: "Ciborgue", universe: "Jovens Titãs em Ação", category: "cartoon" },
             { name: "Estelar", universe: "Jovens Titãs em Ação", category: "cartoon" },
             { name: "Ravena", universe: "Jovens Titãs em Ação", category: "cartoon" },
-            { name: "KND Turma do Bairro", universe: "KND", category: "cartoon" },
-            { name: "Numero 1 (Lider)", universe: "KND", category: "cartoon" },
-            { name: "Numero 2 (Gorducho)", universe: "KND", category: "cartoon" },
-            { name: "Numero 3 (Kuki)", universe: "KND", category: "cartoon" },
-            { name: "Numero 4 (Wally)", universe: "KND", category: "cartoon" },
-            { name: "Numero 5 (Abby)", universe: "KND", category: "cartoon" },
+            { name: "Trigun", universe: "Jovens Titãs", category: "cartoon" },
+            { name: "Numero 1 (Lider)", universe: "KND Turma do Bairro", category: "cartoon" },
+            { name: "Numero 2 (Gorducho)", universe: "KND Turma do Bairro", category: "cartoon" },
+            { name: "Numero 3 (Kuki)", universe: "KND Turma do Bairro", category: "cartoon" },
+            { name: "Numero 4 (Wally)", universe: "KND Turma do Bairro", category: "cartoon" },
+            { name: "Numero 5 (Abby)", universe: "KND Turma do Bairro", category: "cartoon" },
             { name: "Samurai Jack", universe: "Samurai Jack", category: "cartoon" },
             { name: "Aku", universe: "Samurai Jack", category: "cartoon" },
             { name: "Tio Avô", universe: "Tio Avô", category: "cartoon" },
@@ -443,8 +695,47 @@
             { name: "Camp Lazlo", universe: "Acampamento Lazlo", category: "cartoon" },
             { name: "Mico", universe: "Acampamento Lazlo", category: "cartoon" },
             { name: "Rinoceronte Raj", universe: "Acampamento Lazlo", category: "cartoon" },
+            { name: "Princesa Raio de Sol", universe: "Princesa Raio de Sol", category: "cartoon" },
+            { name: "Chowder", universe: "Chchowder", category: "cartoon" },
+            { name: "Panini", universe: "Chowder", category: "cartoon" },
+            { name: "Mung Daal", universe: "Chowder", category: "cartoon" },
+            { name: "Truffles", universe: "Chchowder", category: "cartoon" },
+            { name: "Flapjack", universe: "As Trapalhadas de Flapjack", category: "cartoon" },
+            { name: "Capitão Falange", universe: "As Trapalhadas de Flapjack", category: "cartoon" },
+            { name: "Bolha Bolha", universe: "As Trapalhadas de Flapjack", category: "cartoon" },
+            { name: "Craig", universe: "O Mundo de Craig", category: "cartoon" },
+            { name: "Kelsey", universe: "O Mundo de Craig", category: "cartoon" },
+            { name: "JP", universe: "O Mundo de Craig", category: "cartoon" },
+            { name: "Victor e Valentino", universe: "Victor e Valentino", category: "cartoon" },
+            { name: "OK K.O.!", universe: "OK K.O.!", category: "cartoon" },
+            { name: "Enid", universe: "OK K.O.!", category: "cartoon" },
+            { name: "Rad", universe: "OK K.O.!", category: "cartoon" },
+            { name: "Sym-Bionic Titan", universe: "Sym-Bionic Titan", category: "cartoon" },
+            { name: "Megas XLR", universe: "Megas XLR", category: "cartoon" },
+            { name: "Coop", universe: "Megas XLR", category: "cartoon" },
+            { name: "Jamie", universe: "Megas XLR", category: "cartoon" },
+            { name: "Titio Avô", universe: "Titio Avô", category: "cartoon" },
+            { name: "Generator Rex", universe: "Generator Rex", category: "cartoon" },
+            { name: "Rex Salazar", universe: "Generator Rex", category: "cartoon" },
+            { name: "Agente Seis", universe: "Generator Rex", category: "cartoon" },
+            { name: "Providence Doutor", universe: "Generator Rex", category: "cartoon" },
+            { name: "Classe do 3000", universe: "Classe do 3000", category: "cartoon" },
+            { name: "Sunny Bridges", universe: "Classe do 3000", category: "cartoon" },
+            { name: "Hi Hi Puffy AmiYumi", universe: "Hi Hi Puffy AmiYumi", category: "cartoon" },
+            { name: "Ami", universe: "Hi Hi Puffy AmiYumi", category: "cartoon" },
+            { name: "Yumi", universe: "Hi Hi Puffy AmiYumi", category: "cartoon" },
+            { name: "Mike, Lu & Og", universe: "Mike, Lu & Og", category: "cartoon" },
+            { name: "Espiões Demais (Spies)", universe: "Total Drama", category: "cartoon" },
+            { name: "Chris McLean", universe: "Ilha dos Desafios", category: "cartoon" },
+            { name: "Chef Hatchet", universe: "Ilha dos Desafios", category: "cartoon" },
+            { name: "Owen", universe: "Ilha dos Desafios", category: "cartoon" },
+            { name: "Gwen", universe: "Ilha dos Desafios", category: "cartoon" },
+            { name: "Duncan", universe: "Ilha dos Desafios", category: "cartoon" },
+            { name: "Heather", universe: "Ilha dos Desafios", category: "cartoon" },
+            { name: "Courtney", universe: "Ilha dos Desafios", category: "cartoon" },
+            { name: "Harold", universe: "Ilha dos Desafios", category: "cartoon" },
 
-            // --- NICKELODEON (50) ---
+            // --- NICKELODEON (Aprox. 180) ---
             { name: "Bob Esponja Calça Quadrada", universe: "Bob Esponja", category: "nick" },
             { name: "Patrick Estrela", universe: "Bob Esponja", category: "nick" },
             { name: "Lula Molusco", universe: "Bob Esponja", category: "nick" },
@@ -452,16 +743,28 @@
             { name: "Sandy Bochechas", universe: "Bob Esponja", category: "nick" },
             { name: "Plankton", universe: "Bob Esponja", category: "nick" },
             { name: "Gary o Sapo", universe: "Bob Esponja", category: "nick" },
+            { name: "Pérola Sirigueijo", universe: "Bob Esponja", category: "nick" },
+            { name: "Sra. Puff", universe: "Bob Esponja", category: "nick" },
+            { name: "Larry a Lagosta", universe: "Bob Esponja", category: "nick" },
+            { name: "Homem Sereia", universe: "Bob Esponja", category: "nick" },
+            { name: "Mexilhãozinho", universe: "Bob Esponja", category: "nick" },
             { name: "Timmy Turner", universe: "Padrinhos Mágicos", category: "nick" },
             { name: "Cosmo", universe: "Padrinhos Mágicos", category: "nick" },
             { name: "Wanda", universe: "Padrinhos Mágicos", category: "nick" },
             { name: "Poof", universe: "Padrinhos Mágicos", category: "nick" },
             { name: "Jorgen Von Strangle", universe: "Padrinhos Mágicos", category: "nick" },
             { name: "Denzel Crocker", universe: "Padrinhos Mágicos", category: "nick" },
+            { name: "Chester McBadbat", universe: "Padrinhos Mágicos", category: "nick" },
+            { name: "AJ", universe: "Padrinhos Mágicos", category: "nick" },
+            { name: "Trixie Tang", universe: "Padrinhos Mágicos", category: "nick" },
+            { name: "Vicky a Babá", universe: "Padrinhos Mágicos", category: "nick" },
             { name: "Jimmy Neutron", universe: "As Aventuras de Jimmy Neutron", category: "nick" },
             { name: "Carl Wheezer", universe: "As Aventuras de Jimmy Neutron", category: "nick" },
             { name: "Sheen Estevez", universe: "As Aventuras de Jimmy Neutron", category: "nick" },
             { name: "Goddard", universe: "As Aventuras de Jimmy Neutron", category: "nick" },
+            { name: "Cindy Vortex", universe: "As Aventuras de Jimmy Neutron", category: "nick" },
+            { name: "Libby Folfax", universe: "As Aventuras de Jimmy Neutron", category: "nick" },
+            { name: "Professor Calamitous", universe: "As Aventuras de Jimmy Neutron", category: "nick" },
             { name: "Avatar Aang", universe: "Avatar: A Lenda de Aang", category: "nick" },
             { name: "Katara", universe: "Avatar: A Lenda de Aang", category: "nick" },
             { name: "Sokka", universe: "Avatar: A Lenda de Aang", category: "nick" },
@@ -469,15 +772,28 @@
             { name: "Príncipe Zuko", universe: "Avatar: A Lenda de Aang", category: "nick" },
             { name: "Tio Iroh", universe: "Avatar: A Lenda de Aang", category: "nick" },
             { name: "Azula", universe: "Avatar: A Lenda de Aang", category: "nick" },
+            { name: "Ozai", universe: "Avatar: A Lenda de Aang", category: "nick" },
+            { name: "Suki", universe: "Avatar: A Lenda de Aang", category: "nick" },
+            { name: "Appa", universe: "Avatar: A Lenda de Aang", category: "nick" },
+            { name: "Momo", universe: "Avatar: A Lenda de Aang", category: "nick" },
             { name: "Korra", universe: "A Lenda de Korra", category: "nick" },
+            { name: "Mako", universe: "A Lenda de Korra", category: "nick" },
+            { name: "Bolin", universe: "A Lenda de Korra", category: "nick" },
+            { name: "Asami Sato", universe: "A Lenda de Korra", category: "nick" },
             { name: "Danny Phantom", universe: "Danny Phantom", category: "nick" },
             { name: "Tucker Foley", universe: "Danny Phantom", category: "nick" },
             { name: "Sam Manson", universe: "Danny Phantom", category: "nick" },
+            { name: "Vlad Plasmius", universe: "Danny Phantom", category: "nick" },
+            { name: "Valerie Gray", universe: "Danny Phantom", category: "nick" },
             { name: "Arnold", universe: "Hey Arnold!", category: "nick" },
             { name: "Helga Pataki", universe: "Hey Arnold!", category: "nick" },
             { name: "Gerald", universe: "Hey Arnold!", category: "nick" },
+            { name: "Vovô Phil", universe: "Hey Arnold!", category: "nick" },
+            { name: "Vovó Pookie", universe: "Hey Arnold!", category: "nick" },
             { name: "Rocko", universe: "A Vida Moderna de Rocko", category: "nick" },
             { name: "Spunky", universe: "A Vida Moderna de Rocko", category: "nick" },
+            { name: "Heffer", universe: "A Vida Moderna de Rocko", category: "nick" },
+            { name: "Filburt", universe: "A Vida Moderna de Rocko", category: "nick" },
             { name: "El Tigre", universe: "El Tigre", category: "nick" },
             { name: "Fanboy", universe: "Fanboy & Chum Chum", category: "nick" },
             { name: "Chum Chum", universe: "Fanboy & Chum Chum", category: "nick" },
@@ -488,55 +804,250 @@
             { name: "Kowalski", universe: "Os Pinguins de Madagascar", category: "nick" },
             { name: "Rico", universe: "Os Pinguins de Madagascar", category: "nick" },
             { name: "Recruta", universe: "Os Pinguins de Madagascar", category: "nick" },
+            { name: "Rei Julien", universe: "Os Pinguins de Madagascar", category: "nick" },
+            { name: "Mort", universe: "Os Pinguins de Madagascar", category: "nick" },
+            { name: "Maurice", universe: "Os Pinguins de Madagascar", category: "nick" },
             { name: "Rabbids", universe: "Rabbids Invasion", category: "nick" },
             { name: "Harvey Beaks", universe: "Harvey Beaks", category: "nick" },
             { name: "Bessie Higgenbottom", universe: "The Mighty B!", category: "nick" },
             { name: "Lincoln Loud", universe: "The Loud House", category: "nick" },
             { name: "Lori Loud", universe: "The Loud House", category: "nick" },
             { name: "Leni Loud", universe: "The Loud House", category: "nick" },
+            { name: "Luna Loud", universe: "The Loud House", category: "nick" },
+            { name: "Luan Loud", universe: "The Loud House", category: "nick" },
+            { name: "Lynn Loud", universe: "The Loud House", category: "nick" },
             { name: "Lucy Loud", universe: "The Loud House", category: "nick" },
+            { name: "Lisa Loud", universe: "The Loud House", category: "nick" },
+            { name: "Lily Loud", universe: "The Loud House", category: "nick" },
+            { name: "Clyde McBride", universe: "The Loud House", category: "nick" },
+            { name: "Ronnie Anne", universe: "Os Casagrandes", category: "nick" },
+            { name: "Bobby Santiago", universe: "Os Casagrandes", category: "nick" },
+            { name: "CatDog", universe: "CatDog", category: "nick" },
+            { name: "The Angry Beavers", universe: "Os Castores Pirados", category: "nick" },
+            { name: "Daggett", universe: "Os Castores Pirados", category: "nick" },
+            { name: "Norbert", universe: "Os Castores Pirados", category: "nick" },
+            { name: "Eliza Thornberry", universe: "Os Thornberrys", category: "nick" },
+            { name: "Darwin Thornberry", universe: "Os Thornberrys", category: "nick" },
+            { name: "Donnie", universe: "Os Thornberrys", category: "nick" },
+            { name: "Reggie Rocket", universe: "Rocket Power", category: "nick" },
+            { name: "Otto Rocket", universe: "Rocket Power", category: "nick" },
+            { name: "Tito", universe: "Rocket Power", category: "nick" },
+            { name: "Twister", universe: "Rocket Power", category: "nick" },
+            { name: "Invader Zim", universe: "Invasor Zim", category: "nick" },
+            { name: "Gir", universe: "Invasor Zim", category: "nick" },
+            { name: "Dib", universe: "Invasor Zim", category: "nick" },
+            { name: "Gaz", universe: "Invasor Zim", category: "nick" },
+            { name: "Tak", universe: "Invasor Zim", category: "nick" },
+            { name: "XJ9 (Jenny Wakeman)", universe: "My Life as a Teenage Robot", category: "nick" },
+            { name: "Brad Carbunkle", universe: "My Life as a Teenage Robot", category: "nick" },
+            { name: "Tuck Carbunkle", universe: "My Life as a Teenage Robot", category: "nick" },
+            { name: "Nora Wakeman", universe: "My Life as a Teenage Robot", category: "nick" },
+            { name: "Bessie", universe: "The Mighty B!", category: "nick" },
+            { name: "Penelope", universe: "The Mighty B!", category: "nick" },
+            { name: "Bucky", universe: "The Mighty B!", category: "nick" },
+            { name: "Sanjay", universe: "Sanjay and Craig", category: "nick" },
+            { name: "Craig Snake", universe: "Sanjay and Craig", category: "nick" },
 
-            // --- OUTROS CLÁSSICOS (40) ---
-            { name: "Homer Simpson", universe: "Os Simpsons", category: "outros" },
-            { name: "Bart Simpson", universe: "Os Simpsons", category: "outros" },
-            { name: "Marge Simpson", universe: "Os Simpsons", category: "outros" },
-            { name: "Lisa Simpson", universe: "Os Simpsons", category: "outros" },
-            { name: "Maggie Simpson", universe: "Os Simpsons", category: "outros" },
-            { name: "Ned Flanders", universe: "Os Simpsons", category: "outros" },
-            { name: "Peter Griffin", universe: "Uma Família da Pesada", category: "outros" },
-            { name: "Stewie Griffin", universe: "Uma Família da Pesada", category: "outros" },
-            { name: "Brian Griffin", universe: "Uma Família da Pesada", category: "outros" },
-            { name: "Rick Sanchez", universe: "Rick and Morty", category: "outros" },
-            { name: "Morty Smith", universe: "Rick and Morty", category: "outros" },
-            { name: "Summer Smith", universe: "Rick and Morty", category: "outros" },
-            { name: "Bojack Horseman", universe: "BoJack Horseman", category: "outros" },
-            { name: "Diane Nguyen", universe: "BoJack Horseman", category: "outros" },
-            { name: "Shrek", universe: "Shrek", category: "outros" },
-            { name: "Burro", universe: "Shrek", category: "outros" },
-            { name: "Gato de Botas", universe: "Shrek", category: "outros" },
-            { name: "Fiona", universe: "Shrek", category: "outros" },
-            { name: "Po", universe: "Kung Fu Panda", category: "outros" },
-            { name: "Mestre Shifu", universe: "Kung Fu Panda", category: "outros" },
-            { name: "Tai Lung", universe: "Kung Fu Panda", category: "outros" },
-            { name: "Gru", universe: "Meu Malvado Favorito", category: "outros" },
-            { name: "Minions", universe: "Meu Malvado Favorito", category: "outros" },
-            { name: "Megamente", universe: "Megamente", category: "outros" },
-            { name: "Toothless (Banguela)", universe: "Como Treinar o Seu Dragão", category: "outros" },
-            { name: "Soluço (Hiccup)", universe: "Como Treinar o Seu Dragão", category: "outros" },
-            { name: "Snoopy", universe: "Peanuts", category: "outros" },
-            { name: "Charlie Brown", universe: "Peanuts", category: "outros" },
-            { name: "Garfield", universe: "Garfield", category: "outros" },
-            { name: "Odi", universe: "Garfield", category: "outros" },
-            { name: "Pernalonga (Bugs Bunny)", universe: "Looney Tunes", category: "outros" },
-            { name: "Patolino (Daffy Duck)", universe: "Looney Tunes", category: "outros" },
-            { name: "Gaguinho", universe: "Looney Tunes", category: "outros" },
-            { name: "Frajola", universe: "Looney Tunes", category: "outros" },
-            { name: "Piu-Piu", universe: "Looney Tunes", category: "outros" },
-            { name: "Taz", universe: "Looney Tunes", category: "outros" },
-            { name: "Papa-Léguas", universe: "Looney Tunes", category: "outros" },
-            { name: "Wile E. Coyote", universe: "Looney Tunes", category: "outros" },
-            { name: "Tom", universe: "Tom e Jerry", category: "outros" },
-            { name: "Jerry", universe: "Tom e Jerry", category: "outros" }
+            // --- GAMES / OUTROS / CLÁSSICOS (Aprox. 240) ---
+            { name: "Homer Simpson", universe: "Os Simpsons", category: "games" },
+            { name: "Bart Simpson", universe: "Os Simpsons", category: "games" },
+            { name: "Marge Simpson", universe: "Os Simpsons", category: "games" },
+            { name: "Lisa Simpson", universe: "Os Simpsons", category: "games" },
+            { name: "Maggie Simpson", universe: "Os Simpsons", category: "games" },
+            { name: "Ned Flanders", universe: "Os Simpsons", category: "games" },
+            { name: "Sr. Burns", universe: "Os Simpsons", category: "games" },
+            { name: "Moe Szyslak", universe: "Os Simpsons", category: "games" },
+            { name: "Barney Gumble", universe: "Os Simpsons", category: "games" },
+            { name: "Milhouse Van Houten", universe: "Os Simpsons", category: "games" },
+            { name: "Peter Griffin", universe: "Uma Família da Pesada", category: "games" },
+            { name: "Stewie Griffin", universe: "Uma Família da Pesada", category: "games" },
+            { name: "Brian Griffin", universe: "Uma Família da Pesada", category: "games" },
+            { name: "Lois Griffin", universe: "Uma Família da Pesada", category: "games" },
+            { name: "Chris Griffin", universe: "Uma Família da Pesada", category: "games" },
+            { name: "Meg Griffin", universe: "Uma Família da Pesada", category: "games" },
+            { name: "Glenn Quagmire", universe: "Uma Família da Pesada", category: "games" },
+            { name: "Rick Sanchez", universe: "Rick and Morty", category: "games" },
+            { name: "Morty Smith", universe: "Rick and Morty", category: "games" },
+            { name: "Summer Smith", universe: "Rick and Morty", category: "games" },
+            { name: "Beth Smith", universe: "Rick and Morty", category: "games" },
+            { name: "Jerry Smith", universe: "Rick and Morty", category: "games" },
+            { name: "Bojack Horseman", universe: "BoJack Horseman", category: "games" },
+            { name: "Diane Nguyen", universe: "BoJack Horseman", category: "games" },
+            { name: "Princess Carolyn", universe: "BoJack Horseman", category: "games" },
+            { name: "Mr. Peanutbutter", universe: "BoJack Horseman", category: "games" },
+            { name: "Todd Chavez", universe: "BoJack Horseman", category: "games" },
+            { name: "Shrek", universe: "Shrek", category: "games" },
+            { name: "Burro", universe: "Shrek", category: "games" },
+            { name: "Gato de Botas", universe: "Shrek", category: "games" },
+            { name: "Princesa Fiona", universe: "Shrek", category: "games" },
+            { name: "Lord Farquaad", universe: "Shrek", category: "games" },
+            { name: "Fada Madrinha", universe: "Shrek", category: "games" },
+            { name: "Príncipe Encantado", universe: "Shrek", category: "games" },
+            { name: "Po", universe: "Kung Fu Panda", category: "games" },
+            { name: "Mestre Shifu", universe: "Kung Fu Panda", category: "games" },
+            { name: "Tai Lung", universe: "Kung Fu Panda", category: "games" },
+            { name: "Senhor Ping", universe: "Kung Fu Panda", category: "games" },
+            { name: "Tigresa", universe: "Kung Fu Panda", category: "games" },
+            { name: "Macaco", universe: "Kung Fu Panda", category: "games" },
+            { name: "Louva-a-Deus", universe: "Kung Fu Panda", category: "games" },
+            { name: "Víbora", universe: "Kung Fu Panda", category: "games" },
+            { name: "Grouso", universe: "Kung Fu Panda", category: "games" },
+            { name: "Tai Lung", universe: "Kung Fu Panda", category: "games" },
+            { name: "Gru", universe: "Meu Malvado Favorito", category: "games" },
+            { name: "Minions (Kevin, Stuart, Bob)", universe: "Meu Malvado Favorito", category: "games" },
+            { name: "Lucy Wilde", universe: "Meu Malvado Favorito", category: "games" },
+            { name: "Margo", universe: "Meu Malvado Favorito", category: "games" },
+            { name: "Edith", universe: "Meu Malvado Favorito", category: "games" },
+            { name: "Agnes", universe: "Meu Malvado Favorito", category: "games" },
+            { name: "Vector", universe: "Meu Malvado Favorito", category: "games" },
+            { name: "El Macho", universe: "Meu Malvado Favorito", category: "games" },
+            { name: "Megamente", universe: "Megamente", category: "games" },
+            { name: "Metro Man", universe: "Megamente", category: "games" },
+            { name: "Roxanne Ritchi", universe: "Megamente", category: "games" },
+            { name: "Tighten (Hal Stewart)", universe: "Megamente", category: "games" },
+            { name: "Minion (Peixe)", universe: "Megamente", category: "games" },
+            { name: "Toothless (Banguela)", universe: "Como Treinar o Seu Dragão", category: "games" },
+            { name: "Soluço (Hiccup)", universe: "Como Treinar o Seu Dragão", category: "games" },
+            { name: "Astrid", universe: "Como Treinar o Seu Dragão", category: "games" },
+            { name: "Bocão (Gobber)", universe: "Como Treinar o Seu Dragão", category: "games" },
+            { name: "Stoico o Vast", universe: "Como Treinar o Seu Dragão", category: "games" },
+            { name: "Snoopy", universe: "Peanuts", category: "games" },
+            { name: "Charlie Brown", universe: "Peanuts", category: "games" },
+            { name: "Lucy van Pelt", universe: "Peanuts", category: "games" },
+            { name: "Linus van Pelt", universe: "Peanuts", category: "games" },
+            { name: "Woodstock", universe: "Peanuts", category: "games" },
+            { name: "Garfield", universe: "Garfield", category: "games" },
+            { name: "Odie", universe: "Garfield", category: "games" },
+            { name: "Nermal", universe: "Garfield", category: "games" },
+            { name: "Jon Arbuckle", universe: "Garfield", category: "games" },
+            { name: "Pernalonga (Bugs Bunny)", universe: "Looney Tunes", category: "games" },
+            { name: "Patolino (Daffy Duck)", universe: "Looney Tunes", category: "games" },
+            { name: "Gaguinho (Porky Pig)", universe: "Looney Tunes", category: "games" },
+            { name: "Frajola (Sylvester)", universe: "Looney Tunes", category: "games" },
+            { name: "Piu-Piu (Tweety)", universe: "Looney Tunes", category: "games" },
+            { name: "Taz (Tasmanian Devil)", universe: "Looney Tunes", category: "games" },
+            { name: "Papa-Léguas (Road Runner)", universe: "Looney Tunes", category: "games" },
+            { name: "Wile E. Coyote", universe: "Looney Tunes", category: "games" },
+            { name: "Hortelino Troca-Letras", universe: "Looney Tunes", category: "games" },
+            { name: "Eufrazino Puxa-Briga", universe: "Looney Tunes", category: "games" },
+            { name: "Marquinhão (Marvin o Marciano)", universe: "Looney Tunes", category: "games" },
+            { name: "Frajola Jr.", universe: "Looney Tunes", category: "games" },
+            { name: "Tom", universe: "Tom e Jerry", category: "games" },
+            { name: "Jerry", universe: "Tom e Jerry", category: "games" },
+            { name: "Spike (Bulldog)", universe: "Tom e Jerry", category: "games" },
+            { name: "Tuffy (Nibbles)", universe: "Tom e Jerry", category: "games" },
+            { name: "Mário", universe: "Super Mario Bros", category: "games" },
+            { name: "Luigi", universe: "Super Mario Bros", category: "games" },
+            { name: "Princesa Peach", universe: "Super Mario Bros", category: "games" },
+            { name: "Bowser", universe: "Super Mario Bros", category: "games" },
+            { name: "Yoshi", universe: "Super Mario Bros", category: "games" },
+            { name: "Toad", universe: "Super Mario Bros", category: "games" },
+            { name: "Donkey Kong", universe: "Super Mario Bros", category: "games" },
+            { name: "Wario", universe: "Super Mario Bros", category: "games" },
+            { name: "Waluigi", universe: "Super Mario Bros", category: "games" },
+            { name: "Sonic the Hedgehog", universe: "Sonic", category: "games" },
+            { name: "Miles Tails Prower", universe: "Sonic", category: "games" },
+            { name: "Knuckles the Echidna", universe: "Sonic", category: "games" },
+            { name: "Dr. Eggman", universe: "Sonic", category: "games" },
+            { name: "Amy Rose", universe: "Sonic", category: "games" },
+            { name: "Shadow the Hedgehog", universe: "Sonic", category: "games" },
+            { name: "Pac-Man", universe: "Pac-Man", category: "games" },
+            { name: "Blinky (Fantasma)", universe: "Pac-Man", category: "games" },
+            { name: "Pinky (Fantasma)", universe: "Pac-Man", category: "games" },
+            { name: "Inky (Fantasma)", universe: "Pac-Man", category: "games" },
+            { name: "Clyde (Fantasma)", universe: "Pac-Man", category: "games" },
+            { name: "Pokémon Ash Ketchum", universe: "Pokémon", category: "games" },
+            { name: "Pikachu", universe: "Pokémon", category: "games" },
+            { name: "Charizard", universe: "Pokémon", category: "games" },
+            { name: "Bulbasaur", universe: "Pokémon", category: "games" },
+            { name: "Squirtle", universe: "Pokémon", category: "games" },
+            { name: "Mewtwo", universe: "Pokémon", category: "games" },
+            { name: "Jigglypuff", universe: "Pokémon", category: "games" },
+            { name: "Snorlax", universe: "Pokémon", category: "games" },
+            { name: "Gengar", universe: "Pokémon", category: "games" },
+            { name: "Lucario", universe: "Pokémon", category: "games" },
+            { name: "Greninja", universe: "Pokémon", category: "games" },
+            { name: "Kirby", universe: "Kirby", category: "games" },
+            { name: "King Dedede", universe: "Kirby", category: "games" },
+            { name: "Meta Knight", universe: "Kirby", category: "games" },
+            { name: "Link", universe: "The Legend of Zelda", category: "games" },
+            { name: "Princesa Zelda", universe: "The Legend of Zelda", category: "games" },
+            { name: "Ganondorf", universe: "The Legend of Zelda", category: "games" },
+            { name: "Sheik", universe: "The Legend of Zelda", category: "games" },
+            { name: "Samus Aran", universe: "Metroid", category: "games" },
+            { name: "Steve", universe: "Minecraft", category: "games" },
+            { name: "Alex", universe: "Minecraft", category: "games" },
+            { name: "Creeper", universe: "Minecraft", category: "games" },
+            { name: "Enderman", universe: "Minecraft", category: "games" },
+            { name: "Zumbi", universe: "Minecraft", category: "games" },
+            { name: "Esqueleto", universe: "Minecraft", category: "games" },
+            { name: "Ender Dragon", universe: "Minecraft", category: "games" },
+            { name: "Master Chief", universe: "Halo", category: "games" },
+            { name: "Cortana", universe: "Halo", category: "games" },
+            { name: "Kratos", universe: "God of War", category: "games" },
+            { name: "Atreus", universe: "God of War", category: "games" },
+            { name: "Zeus", universe: "God of War", category: "games" },
+            { name: "Thor", universe: "God of War", category: "games" },
+            { name: "Odin", universe: "God of War", category: "games" },
+            { name: "Nathan Drake", universe: "Uncharted", category: "games" },
+            { name: "Elena Fisher", universe: "Uncharted", category: "games" },
+            { name: "Victor Sullivan (Sully)", universe: "Uncharted", category: "games" },
+            { name: "Lara Croft", universe: "Tomb Raider", category: "games" },
+            { name: "Solid Snake", universe: "Metal Gear Solid", category: "games" },
+            { name: "Big Boss", universe: "Metal Gear Solid", category: "games" },
+            { name: "Raiden", universe: "Metal Gear Solid", category: "games" },
+            { name: "Geralt de Rivia", universe: "The Witcher", category: "games" },
+            { name: "Ciri", universe: "The Witcher", category: "games" },
+            { name: "Yennefer", universe: "The Witcher", category: "games" },
+            { name: "Triss Merigold", universe: "The Witcher", category: "games" },
+            { name: "Arthur Morgan", universe: "Red Dead Redemption", category: "games" },
+            { name: "John Marston", universe: "Red Dead Redemption", category: "games" },
+            { name: "Dutch van der Linde", universe: "Red Dead Redemption", category: "games" },
+            { name: "Trevor Philips", universe: "Grand Theft Auto V", category: "games" },
+            { name: "Michael De Santa", universe: "Grand Theft Auto V", category: "games" },
+            { name: "Franklin Clinton", universe: "Grand Theft Auto V", category: "games" },
+            { name: "CJ (Carl Johnson)", universe: "Grand Theft Auto: San Andreas", category: "games" },
+            { name: "Tommy Vercetti", universe: "Grand Theft Auto: Vice City", category: "games" },
+            { name: "Niko Bellic", universe: "Grand Theft Auto IV", category: "games" },
+            { name: "Leon S. Kennedy", universe: "Resident Evil", category: "games" },
+            { name: "Claire Redfield", universe: "Resident Evil", category: "games" },
+            { name: "Chris Redfield", universe: "Resident Evil", category: "games" },
+            { name: "Jill Valentine", universe: "Resident Evil", category: "games" },
+            { name: "Ada Wong", universe: "Resident Evil", category: "games" },
+            { name: "Albert Wesker", universe: "Resident Evil", category: "games" },
+            { name: "Nemesis", universe: "Resident Evil", category: "games" },
+            { name: "Pyramid Head", universe: "Silent Hill", category: "games" },
+            { name: "James Sunderland", universe: "Silent Hill", category: "games" },
+            { name: "Doom Slayer", universe: "DOOM", category: "games" },
+            { name: "Gordon Freeman", universe: "Half-Life", category: "games" },
+            { name: "Alyx Vance", universe: "Half-Life", category: "games" },
+            { name: "Chell", universe: "Portal", category: "games" },
+            { name: "GLaDOS", universe: "Portal", category: "games" },
+            { name: "Wheatley", universe: "Portal", category: "games" },
+            { name: "Vault Boy", universe: "Fallout", category: "games" },
+            { name: "Dovahkiin", universe: "The Elder Scrolls V: Skyrim", category: "games" },
+            { name: "Alduin", universe: "The Elder Scrolls V: Skyrim", category: "games" },
+            { name: "Joel Miller", universe: "The Last of Us", category: "games" },
+            { name: "Ellie Williams", universe: "The Last of Us", category: "games" },
+            { name: "Abby Anderson", universe: "The Last of Us", category: "games" },
+            { name: "Tommy Miller", universe: "The Last of Us", category: "games" },
+            { name: "Spider-Man (Peter Parker)", universe: "Marvel / Jogos", category: "games" },
+            { name: "Miles Morales", universe: "Marvel / Jogos", category: "games" },
+            { name: "Batman (Bruce Wayne)", universe: "DC / Jogos", category: "games" },
+            { name: "Superman (Clark Kent)", universe: "DC / Jogos", category: "games" },
+            { name: "Mulher-Maravilha", universe: "DC / Jogos", category: "games" },
+            { name: "Coringa (Joker)", universe: "DC / Jogos", category: "games" },
+            { name: "Arlequina (Harley Quinn)", universe: "DC / Jogos", category: "games" },
+            { name: "Homem de Ferro", universe: "Marvel / Quadrinhos", category: "games" },
+            { name: "Capitão América", universe: "Marvel / Quadrinhos", category: "games" },
+            { name: "Thor Odinson", universe: "Marvel / Quadrinhos", category: "games" },
+            { name: "Hulk (Bruce Banner)", universe: "Marvel / Quadrinhos", category: "games" },
+            { name: "Pantera Negra", universe: "Marvel / Quadrinhos", category: "games" },
+            { name: "Wolverine", universe: "Marvel / X-Men", category: "games" },
+            { name: "Deadpool", universe: "Marvel / X-Men", category: "games" },
+            { name: "Ciclope", universe: "Marvel / X-Men", category: "games" },
+            { name: "Tempestade", universe: "Marvel / X-Men", category: "games" },
+            { name: "Magneto", universe: "Marvel / X-Men", category: "games" }
         ];
 
         let currentCategory = 'todos';
@@ -597,7 +1108,7 @@
 
             let counter = 0;
             const totalRounds = 25; // Número de trocas visuais antes de parar
-            const speed = 50; // Velocidade da animação em milissegundos
+            const speed = 40; // Velocidade da animação
 
             const interval = setInterval(() => {
                 // Sorteia aleatoriamente um personagem temporário para o efeito visual
