@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta de Personagens de Animação</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --primary: #8b5cf6;
+            --primary-hover: #7c3aed;
+            --accent: #f43f5e;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            margin: auto;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #c084fc, #f43f5e, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Categorias / Filtros */
+        .filters-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--text-main);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Caixa de Sorteio / Roleta */
+        .roulette-box {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            min-height: 220px;
+        }
+
+        .badge-category {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: rgba(244, 63, 94, 0.15);
+            color: #fb7185;
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .character-display {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            word-break: break-word;
+            transition: transform 0.1s ease, opacity 0.1s ease;
+            margin-bottom: 8px;
+        }
+
+        .character-universe {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Botão de Sortear */
+        .spin-btn {
+            background: linear-gradient(135deg, #f43f5e 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            width: 100%;
+            max-width: 280px;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: transform 0.1s ease, box-shadow 0.2s ease;
+            box-shadow: 0 10px 25px rgba(244, 63, 94, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .spin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(244, 63, 94, 0.4);
+        }
+
+        .spin-btn:active {
+            transform: translateY(1px);
+        }
+
+        .stats {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        footer {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Roleta de Animações</h1>
+            <p>Mais de 300 personagens de Animes, Desenhos e Filmes!</p>
+        </header>
+
+        <!-- Filtros de Categoria -->
+        <div class="filters-container" id="filtersContainer">
+            <button class="filter-btn active" data-category="todos">Todos (310)</button>
+            <button class="filter-btn" data-category="anime">Anime</button>
+            <button class="filter-btn" data-category="disney">Disney / Pixar</button>
+            <button class="filter-btn" data-category="cartoon">Cartoon Network</button>
+            <button class="filter-btn" data-category="nick">Nickelodeon</button>
+            <button class="filter-btn" data-category="outros">Outros Clássicos</button>
+        </div>
+
+        <!-- Visor da Roleta -->
+        <div class="roulette-box">
+            <div class="badge-category" id="badgeCategory">Geral</div>
+            <div class="character-display" id="characterName">Clique em Sortear!</div>
+            <div class="character-universe" id="characterUniverse">Pronto para começar</div>
+        </div>
+
+        <!-- Botão Principal -->
+        <button class="spin-btn" id="spinBtn">🎲 Sortear Personagem</button>
+
+        <div class="stats" id="statsInfo">Mostrando entre 310 personagens disponíveis</div>
+    </div>
+
+    <footer>Criado com IA • Mais de 300 personagens cadastrados</footer>
+
+    <script>
+        const characters = [
+            // --- ANIME (70) ---
+            { name: "Goku", universe: "Dragon Ball", category: "anime" },
+            { name: "Vegeta", universe: "Dragon Ball", category: "anime" },
+            { name: "Gohan", universe: "Dragon Ball", category: "anime" },
+            { name: "Piccolo", universe: "Dragon Ball", category: "anime" },
+            { name: "Freeza", universe: "Dragon Ball", category: "anime" },
+            { name: "Naruto Uzumaki", universe: "Naruto", category: "anime" },
+            { name: "Sasuke Uchiha", universe: "Naruto", category: "anime" },
+            { name: "Kakashi Hatake", universe: "Naruto", category: "anime" },
+            { name: "Sakura Haruno", universe: "Naruto", category: "anime" },
+            { name: "Itachi Uchiha", universe: "Naruto", category: "anime" },
+            { name: "Hinata Hyuga", universe: "Naruto", category: "anime" },
+            { name: "Jiraiya", universe: "Naruto", category: "anime" },
+            { name: "Monkey D. Luffy", universe: "One Piece", category: "anime" },
+            { name: "Roronoa Zoro", universe: "One Piece", category: "anime" },
+            { name: "Nami", universe: "One Piece", category: "anime" },
+            { name: "Sanji", universe: "One Piece", category: "anime" },
+            { name: "Tony Tony Chopper", universe: "One Piece", category: "anime" },
+            { name: "Trafalgar Law", universe: "One Piece", category: "anime" },
+            { name: "Tanjiro Kamado", universe: "Demon Slayer", category: "anime" },
+            { name: "Nezuko Kamado", universe: "Demon Slayer", category: "anime" },
+            { name: "Zenitsu Agatsuma", universe: "Demon Slayer", category: "anime" },
+            { name: "Inosuke Hashibira", universe: "Demon Slayer", category: "anime" },
+            { name: "Giyu Tomioka", universe: "Demon Slayer", category: "anime" },
+            { name: "Shinobu Kocho", universe: "Demon Slayer", category: "anime" },
+            { name: "Eren Jaeger", universe: "Attack on Titan", category: "anime" },
+            { name: "Mikasa Ackerman", universe: "Attack on Titan", category: "anime" },
+            { name: "Levi Ackerman", universe: "Attack on Titan", category: "anime" },
+            { name: "Armin Arlert", universe: "Attack on Titan", category: "anime" },
+            { name: "Satoru Gojo", universe: "Jujutsu Kaisen", category: "anime" },
+            { name: "Yuji Itadori", universe: "Jujutsu Kaisen", category: "anime" },
+            { name: "Megumi Fushiguro", universe: "Jujutsu Kaisen", category: "anime" },
+            { name: "Nobara Kugisaki", universe: "Jujutsu Kaisen", category: "anime" },
+            { name: "Ryomen Sukuna", universe: "Jujutsu Kaisen", category: "anime" },
+            { name: "Denji", universe: "Chainsaw Man", category: "anime" },
+            { name: "Makima", universe: "Chainsaw Man", category: "anime" },
+            { name: "Power", universe: "Chainsaw Man", category: "anime" },
+            { name: "Anya Forger", universe: "Spy x Family", category: "anime" },
+            { name: "Loid Forger", universe: "Spy x Family", category: "anime" },
+            { name: "Yor Forger", universe: "Spy x Family", category: "anime" },
+            { name: "Midoriya Izuku (Deku)", universe: "My Hero Academia", category: "anime" },
+            { name: "Katsuki Bakugo", universe: "My Hero Academia", category: "anime" },
+            { name: "Shoto Todoroki", universe: "My Hero Academia", category: "anime" },
+            { name: "All Might", universe: "My Hero Academia", category: "anime" },
+            { name: "Sailor Moon", universe: "Sailor Moon", category: "anime" },
+            { name: "Edward Elric", universe: "Fullmetal Alchemist", category: "anime" },
+            { name: "Alphonse Elric", universe: "Fullmetal Alchemist", category: "anime" },
+            { name: "Light Yagami", universe: "Death Note", category: "anime" },
+            { name: "L (Lawliet)", universe: "Death Note", category: "anime" },
+            { name: "Ken Kaneki", universe: "Tokyo Ghoul", category: "anime" },
+            { name: "Saitama", universe: "One Punch Man", category: "anime" },
+            { name: "Genos", universe: "One Punch Man", category: "anime" },
+            { name: "Natsu Dragneel", universe: "Fairy Tail", category: "anime" },
+            { name: "Lucy Heartfilia", universe: "Fairy Tail", category: "anime" },
+            { name: "Kakarot", universe: "Dragon Ball", category: "anime" },
+            { name: "Kamado Tanjirou", universe: "Demon Slayer", category: "anime" },
+            { name: "Yami Sukehiro", universe: "Black Clover", category: "anime" },
+            { name: "Asta", universe: "Black Clover", category: "anime" },
+            { name: "Yuno Grinbell", universe: "Black Clover", category: "anime" },
+            { name: "Ichigo Kurosaki", universe: "Bleach", category: "anime" },
+            { name: "Rukia Kuchiki", universe: "Bleach", category: "anime" },
+            { name: "Sosuke Aizen", universe: "Bleach", category: "anime" },
+            { name: "Inuyasha", universe: "InuYasha", category: "anime" },
+            { name: "Sesshomaru", universe: "InuYasha", category: "anime" },
+            { name: "Kagome Higurashi", universe: "InuYasha", category: "anime" },
+            { name: "Kaguya Shinomiya", universe: "Kaguya-sama", category: "anime" },
+            { name: "Chika Fujiwara", universe: "Kaguya-sama", category: "anime" },
+            { name: "Senku Ishigami", universe: "Dr. Stone", category: "anime" },
+            { name: "Kuroko Tetsuya", universe: "Kuroko no Basket", category: "anime" },
+            { name: "Shoyo Hinata", universe: "Haikyuu!!", category: "anime" },
+            { name: "Tobio Kageyama", universe: "Haikyuu!!", category: "anime" },
+
+            // --- DISNEY / PIXAR (75) ---
+            { name: "Mickey Mouse", universe: "Disney", category: "disney" },
+            { name: "Minnie Mouse", universe: "Disney", category: "disney" },
+            { name: "Pato Donald", universe: "Disney", category: "disney" },
+            { name: "Pateta", universe: "Disney", category: "disney" },
+            { name: "Pluto", universe: "Disney", category: "disney" },
+            { name: "Margarida", universe: "Disney", category: "disney" },
+            { name: "Tio Patinhas", universe: "Disney", category: "disney" },
+            { name: "Simba", universe: "O Rei Leão", category: "disney" },
+            { name: "Mufasa", universe: "O Rei Leão", category: "disney" },
+            { name: "Scar", universe: "O Rei Leão", category: "disney" },
+            { name: "Timão", universe: "O Rei Leão", category: "disney" },
+            { name: "Pumba", universe: "O Rei Leão", category: "disney" },
+            { name: "Aladdin", universe: "Aladdin", category: "disney" },
+            { name: "Princesa Jasmine", universe: "Aladdin", category: "disney" },
+            { name: "Gênio", universe: "Aladdin", category: "disney" },
+            { name: "Jafar", universe: "Aladdin", category: "disney" },
+            { name: "Elsa", universe: "Frozen", category: "disney" },
+            { name: "Anna", universe: "Frozen", category: "disney" },
+            { name: "Olaf", universe: "Frozen", category: "disney" },
+            { name: "Kristoff", universe: "Frozen", category: "disney" },
+            { name: "Woody", universe: "Toy Story", category: "disney" },
+            { name: "Buzz Lightyear", universe: "Toy Story", category: "disney" },
+            { name: "Jessie", universe: "Toy Story", category: "disney" },
+            { name: "Rex", universe: "Toy Story", category: "disney" },
+            { name: "Sr. Cabeça de Batata", universe: "Toy Story", category: "disney" },
+            { name: "Moana", universe: "Moana", category: "disney" },
+            { name: "Maui", universe: "Moana", category: "disney" },
+            { name: "Mulan", universe: "Mulan", category: "disney" },
+            { name: "Mushu", universe: "Mulan", category: "disney" },
+            { name: "Hércules", universe: "Hércules", category: "disney" },
+            { name: "Hades", universe: "Hércules", category: "disney" },
+            { name: "Ariel", universe: "A Pequena Sereia", category: "disney" },
+            { name: "Úrsula", universe: "A Pequena Sereia", category: "disney" },
+            { name: "Sebastião", universe: "A Pequena Sereia", category: "disney" },
+            { name: "Bela", universe: "A Bela e a Fera", category: "disney" },
+            { name: "Fera", universe: "A Bela e a Fera", category: "disney" },
+            { name: "Cinderela", universe: "Cinderela", category: "disney" },
+            { name: "Branca de Neve", universe: "Branca de Neve", category: "disney" },
+            { name: "Aurora", universe: "A Bela Adormecida", category: "disney" },
+            { name: "Malévola", universe: "A Bela Adormecida", category: "disney" },
+            { name: "Rapunzel", universe: "Enrolados", category: "disney" },
+            { name: "Flynn Rider", universe: "Enrolados", category: "disney" },
+            { name: "Tiana", universe: "A Princesa e o Sapo", category: "disney" },
+            { name: "Dr. Facilier", universe: "A Princesa e o Sapo", category: "disney" },
+            { name: "Merida", universe: "Valente", category: "disney" },
+            { name: "Relâmpago McQueen", universe: "Carros", category: "disney" },
+            { name: "Mate (Mater)", universe: "Carros", category: "disney" },
+            { name: "Sally", universe: "Carros", category: "disney" },
+            { name: "Mike Wazowski", universe: "Monstros S.A.", category: "disney" },
+            { name: "James P. Sullivan (Sulley)", universe: "Monstros S.A.", category: "disney" },
+            { name: "Boo", universe: "Monstros S.A.", category: "disney" },
+            { name: "Randall Boggs", universe: "Monstros S.A.", category: "disney" },
+            { name: "Nemo", universe: "Procurando o Nemo", category: "disney" },
+            { name: "Dory", universe: "Procurando o Nemo", category: "disney" },
+            { name: "Marlin", universe: "Procurando o Nemo", category: "disney" },
+            { name: "Walle", universe: "WALL-E", category: "disney" },
+            { name: "Eva", universe: "WALL-E", category: "disney" },
+            { name: "Carl Fredricksen", universe: "Up: Altas Aventuras", category: "disney" },
+            { name: "Russell", universe: "Up: Altas Aventuras", category: "disney" },
+            { name: "Dug", universe: "Up: Altas Aventuras", category: "disney" },
+            { name: "Joy (Alegria)", universe: "Divertidamente", category: "disney" },
+            { name: "Sadness (Tristeza)", universe: "Divertidamente", category: "disney" },
+            { name: "Anger (Raiva)", universe: "Divertidamente", category: "disney" },
+            { name: "Fear (Medo)", universe: "Divertidamente", category: "disney" },
+            { name: "Disgust (Nojinho)", universe: "Divertidamente", category: "disney" },
+            { name: "Anxiety (Ansiedade)", universe: "Divertidamente 2", category: "disney" },
+            { name: "Miguel Rivera", universe: "Viva: A Vida é uma Festa", category: "disney" },
+            { name: "Héctor", universe: "Viva: A Vida é uma Festa", category: "disney" },
+            { name: "Stitch", universe: "Lilo & Stitch", category: "disney" },
+            { name: "Lilo", universe: "Lilo & Stitch", category: "disney" },
+            { name: "Peter Pan", universe: "Peter Pan", category: "disney" },
+            { name: "Capitão Gancho", universe: "Peter Pan", category: "disney" },
+            { name: "Pinóquio", universe: "Pinóquio", category: "disney" },
+            { name: "Dumbo", universe: "Dumbo", category: "disney" },
+            { name: "Bambi", universe: "Bambi", category: "disney" },
+
+            // --- CARTOON NETWORK (75) ---
+            { name: "Ben Tennyson", universe: "Ben 10", category: "cartoon" },
+            { name: "Gwen Tennyson", universe: "Ben 10", category: "cartoon" },
+            { name: "Vovô Max", universe: "Ben 10", category: "cartoon" },
+            { name: "Chama (Heatblast)", universe: "Ben 10", category: "cartoon" },
+            { name: "Quatro Braços", universe: "Ben 10", category: "cartoon" },
+            { name: "Bens (Diamondhead)", universe: "Ben 10", category: "cartoon" },
+            { name: "Vilgax", universe: "Ben 10", category: "cartoon" },
+            { name: "Finn o Humano", universe: "Hora de Aventura", category: "cartoon" },
+            { name: "Jake o Cão", universe: "Hora de Aventura", category: "cartoon" },
+            { name: "Princesa Jujuba", universe: "Hora de Aventura", category: "cartoon" },
+            { name: "Marceline", universe: "Hora de Aventura", category: "cartoon" },
+            { name: "Rei Gelado", universe: "Hora de Aventura", category: "cartoon" },
+            { name: "BMO", universe: "Hora de Aventura", category: "cartoon" },
+            { name: "Lich", universe: "Hora de Aventura", category: "cartoon" },
+            { name: "Mordecai", universe: "Apenas um Show", category: "cartoon" },
+            { name: "Rigby", universe: "Apenas um Show", category: "cartoon" },
+            { name: "Benson", universe: "Apenas um Show", category: "cartoon" },
+            { name: "Pairulito (Pops)", universe: "Apenas um Show", category: "cartoon" },
+            { name: "Skips", universe: "Apenas um Show", category: "cartoon" },
+            { name: "Musculoso", universe: "Apenas um Show", category: "cartoon" },
+            { name: "Fantasmão", universe: "Apenas um Show", category: "cartoon" },
+            { name: "Gumball Watterson", universe: "O Incrível Mundo de Gumball", category: "cartoon" },
+            { name: "Darwin Watterson", universe: "O Incrível Mundo de Gumball", category: "cartoon" },
+            { name: "Anais Watterson", universe: "O Incrível Mundo de Gumball", category: "cartoon" },
+            { name: "Nicole Watterson", universe: "O Incrível Mundo de Gumball", category: "cartoon" },
+            { name: "Ricardo Watterson", universe: "O Incrível Mundo de Gumball", category: "cartoon" },
+            { name: "Steven Universe", universe: "Steven Universo", category: "cartoon" },
+            { name: "Granate (Garnet)", universe: "Steven Universo", category: "cartoon" },
+            { name: "Ametista", universe: "Steven Universo", category: "cartoon" },
+            { name: "Pérola", universe: "Steven Universo", category: "cartoon" },
+            { name: "Diamante Amarelo", universe: "Steven Universo", category: "cartoon" },
+            { name: "Espinela (Spinel)", universe: "Steven Universo", category: "cartoon" },
+            { name: "Florzinha", universe: "As Meninas Superpoderosas", category: "cartoon" },
+            { name: "Lindinha", universe: "As Meninas Superpoderosas", category: "cartoon" },
+            { name: "Docinho", universe: "As Meninas Superpoderosas", category: "cartoon" },
+            { name: "Macaco Louco", universe: "As Meninas Superpoderosas", category: "cartoon" },
+            { name: "Ele", universe: "As Meninas Superpoderosas", category: "cartoon" },
+            { name: "Du (Ed)", universe: "Du, Dudu e Edu", category: "cartoon" },
+            { name: "Dudu (Edd)", universe: "Du, Dudu e Edu", category: "cartoon" },
+            { name: "Edu (Eddy)", universe: "Du, Dudu e Edu", category: "cartoon" },
+            { name: "Coragem", universe: "Coragem, o Cão Covarde", category: "cartoon" },
+            { name: "Muriel Eustácio", universe: "Coragem, o Cão Covarde", category: "cartoon" },
+            { name: "Eustácio Resmungão", universe: "Coragem, o Cão Covarde", category: "cartoon" },
+            { name: "Dexter", universe: "O Laboratório de Dexter", category: "cartoon" },
+            { name: "Dee Dee", universe: "O Laboratório de Dexter", category: "cartoon" },
+            { name: "Mandark", universe: "O Laboratório de Dexter", category: "cartoon" },
+            { name: "Johnny Bravo", universe: "Johnny Bravo", category: "cartoon" },
+            { name: "Vaca", universe: "A Vaca e o Frango", category: "cartoon" },
+            { name: "Frango", universe: "A Vaca e o Frango", category: "cartoon" },
+            { name: "Sem-Calça", universe: "A Vaca e o Frango", category: "cartoon" },
+            { name: "Clarence", universe: "Clarence", category: "cartoon" },
+            { name: "Sumo", universe: "Clarence", category: "cartoon" },
+            { name: "Jeff", universe: "Clarence", category: "cartoon" },
+            { name: "Urso Pardo", universe: "Ursos sem Curso", category: "cartoon" },
+            { name: "Urso Panda", universe: "Ursos sem Curso", category: "cartoon" },
+            { name: "Urso Polar", universe: "Ursos sem Curso", category: "cartoon" },
+            { name: "Mutano", universe: "Jovens Titãs em Ação", category: "cartoon" },
+            { name: "Robin", universe: "Jovens Titãs em Ação", category: "cartoon" },
+            { name: "Ciborgue", universe: "Jovens Titãs em Ação", category: "cartoon" },
+            { name: "Estelar", universe: "Jovens Titãs em Ação", category: "cartoon" },
+            { name: "Ravena", universe: "Jovens Titãs em Ação", category: "cartoon" },
+            { name: "KND Turma do Bairro", universe: "KND", category: "cartoon" },
+            { name: "Numero 1 (Lider)", universe: "KND", category: "cartoon" },
+            { name: "Numero 2 (Gorducho)", universe: "KND", category: "cartoon" },
+            { name: "Numero 3 (Kuki)", universe: "KND", category: "cartoon" },
+            { name: "Numero 4 (Wally)", universe: "KND", category: "cartoon" },
+            { name: "Numero 5 (Abby)", universe: "KND", category: "cartoon" },
+            { name: "Samurai Jack", universe: "Samurai Jack", category: "cartoon" },
+            { name: "Aku", universe: "Samurai Jack", category: "cartoon" },
+            { name: "Tio Avô", universe: "Tio Avô", category: "cartoon" },
+            { name: "Pochete", universe: "Tio Avô", category: "cartoon" },
+            { name: "Steve Galinha", universe: "Tio Avô", category: "cartoon" },
+            { name: "Camp Lazlo", universe: "Acampamento Lazlo", category: "cartoon" },
+            { name: "Mico", universe: "Acampamento Lazlo", category: "cartoon" },
+            { name: "Rinoceronte Raj", universe: "Acampamento Lazlo", category: "cartoon" },
+
+            // --- NICKELODEON (50) ---
+            { name: "Bob Esponja Calça Quadrada", universe: "Bob Esponja", category: "nick" },
+            { name: "Patrick Estrela", universe: "Bob Esponja", category: "nick" },
+            { name: "Lula Molusco", universe: "Bob Esponja", category: "nick" },
+            { name: "Sr. Sirigueijo", universe: "Bob Esponja", category: "nick" },
+            { name: "Sandy Bochechas", universe: "Bob Esponja", category: "nick" },
+            { name: "Plankton", universe: "Bob Esponja", category: "nick" },
+            { name: "Gary o Sapo", universe: "Bob Esponja", category: "nick" },
+            { name: "Timmy Turner", universe: "Padrinhos Mágicos", category: "nick" },
+            { name: "Cosmo", universe: "Padrinhos Mágicos", category: "nick" },
+            { name: "Wanda", universe: "Padrinhos Mágicos", category: "nick" },
+            { name: "Poof", universe: "Padrinhos Mágicos", category: "nick" },
+            { name: "Jorgen Von Strangle", universe: "Padrinhos Mágicos", category: "nick" },
+            { name: "Denzel Crocker", universe: "Padrinhos Mágicos", category: "nick" },
+            { name: "Jimmy Neutron", universe: "As Aventuras de Jimmy Neutron", category: "nick" },
+            { name: "Carl Wheezer", universe: "As Aventuras de Jimmy Neutron", category: "nick" },
+            { name: "Sheen Estevez", universe: "As Aventuras de Jimmy Neutron", category: "nick" },
+            { name: "Goddard", universe: "As Aventuras de Jimmy Neutron", category: "nick" },
+            { name: "Avatar Aang", universe: "Avatar: A Lenda de Aang", category: "nick" },
+            { name: "Katara", universe: "Avatar: A Lenda de Aang", category: "nick" },
+            { name: "Sokka", universe: "Avatar: A Lenda de Aang", category: "nick" },
+            { name: "Toph Beifong", universe: "Avatar: A Lenda de Aang", category: "nick" },
+            { name: "Príncipe Zuko", universe: "Avatar: A Lenda de Aang", category: "nick" },
+            { name: "Tio Iroh", universe: "Avatar: A Lenda de Aang", category: "nick" },
+            { name: "Azula", universe: "Avatar: A Lenda de Aang", category: "nick" },
+            { name: "Korra", universe: "A Lenda de Korra", category: "nick" },
+            { name: "Danny Phantom", universe: "Danny Phantom", category: "nick" },
+            { name: "Tucker Foley", universe: "Danny Phantom", category: "nick" },
+            { name: "Sam Manson", universe: "Danny Phantom", category: "nick" },
+            { name: "Arnold", universe: "Hey Arnold!", category: "nick" },
+            { name: "Helga Pataki", universe: "Hey Arnold!", category: "nick" },
+            { name: "Gerald", universe: "Hey Arnold!", category: "nick" },
+            { name: "Rocko", universe: "A Vida Moderna de Rocko", category: "nick" },
+            { name: "Spunky", universe: "A Vida Moderna de Rocko", category: "nick" },
+            { name: "El Tigre", universe: "El Tigre", category: "nick" },
+            { name: "Fanboy", universe: "Fanboy & Chum Chum", category: "nick" },
+            { name: "Chum Chum", universe: "Fanboy & Chum Chum", category: "nick" },
+            { name: "Dudley Puppy", universe: "T.U.F.F. Puppy", category: "nick" },
+            { name: "Kitty Katswell", universe: "T.U.F.F. Puppy", category: "nick" },
+            { name: "Otis", universe: "O Segredo dos Animais", category: "nick" },
+            { name: "Penguin (Capitão)", universe: "Os Pinguins de Madagascar", category: "nick" },
+            { name: "Kowalski", universe: "Os Pinguins de Madagascar", category: "nick" },
+            { name: "Rico", universe: "Os Pinguins de Madagascar", category: "nick" },
+            { name: "Recruta", universe: "Os Pinguins de Madagascar", category: "nick" },
+            { name: "Rabbids", universe: "Rabbids Invasion", category: "nick" },
+            { name: "Harvey Beaks", universe: "Harvey Beaks", category: "nick" },
+            { name: "Bessie Higgenbottom", universe: "The Mighty B!", category: "nick" },
+            { name: "Lincoln Loud", universe: "The Loud House", category: "nick" },
+            { name: "Lori Loud", universe: "The Loud House", category: "nick" },
+            { name: "Leni Loud", universe: "The Loud House", category: "nick" },
+            { name: "Lucy Loud", universe: "The Loud House", category: "nick" },
+
+            // --- OUTROS CLÁSSICOS (40) ---
+            { name: "Homer Simpson", universe: "Os Simpsons", category: "outros" },
+            { name: "Bart Simpson", universe: "Os Simpsons", category: "outros" },
+            { name: "Marge Simpson", universe: "Os Simpsons", category: "outros" },
+            { name: "Lisa Simpson", universe: "Os Simpsons", category: "outros" },
+            { name: "Maggie Simpson", universe: "Os Simpsons", category: "outros" },
+            { name: "Ned Flanders", universe: "Os Simpsons", category: "outros" },
+            { name: "Peter Griffin", universe: "Uma Família da Pesada", category: "outros" },
+            { name: "Stewie Griffin", universe: "Uma Família da Pesada", category: "outros" },
+            { name: "Brian Griffin", universe: "Uma Família da Pesada", category: "outros" },
+            { name: "Rick Sanchez", universe: "Rick and Morty", category: "outros" },
+            { name: "Morty Smith", universe: "Rick and Morty", category: "outros" },
+            { name: "Summer Smith", universe: "Rick and Morty", category: "outros" },
+            { name: "Bojack Horseman", universe: "BoJack Horseman", category: "outros" },
+            { name: "Diane Nguyen", universe: "BoJack Horseman", category: "outros" },
+            { name: "Shrek", universe: "Shrek", category: "outros" },
+            { name: "Burro", universe: "Shrek", category: "outros" },
+            { name: "Gato de Botas", universe: "Shrek", category: "outros" },
+            { name: "Fiona", universe: "Shrek", category: "outros" },
+            { name: "Po", universe: "Kung Fu Panda", category: "outros" },
+            { name: "Mestre Shifu", universe: "Kung Fu Panda", category: "outros" },
+            { name: "Tai Lung", universe: "Kung Fu Panda", category: "outros" },
+            { name: "Gru", universe: "Meu Malvado Favorito", category: "outros" },
+            { name: "Minions", universe: "Meu Malvado Favorito", category: "outros" },
+            { name: "Megamente", universe: "Megamente", category: "outros" },
+            { name: "Toothless (Banguela)", universe: "Como Treinar o Seu Dragão", category: "outros" },
+            { name: "Soluço (Hiccup)", universe: "Como Treinar o Seu Dragão", category: "outros" },
+            { name: "Snoopy", universe: "Peanuts", category: "outros" },
+            { name: "Charlie Brown", universe: "Peanuts", category: "outros" },
+            { name: "Garfield", universe: "Garfield", category: "outros" },
+            { name: "Odi", universe: "Garfield", category: "outros" },
+            { name: "Pernalonga (Bugs Bunny)", universe: "Looney Tunes", category: "outros" },
+            { name: "Patolino (Daffy Duck)", universe: "Looney Tunes", category: "outros" },
+            { name: "Gaguinho", universe: "Looney Tunes", category: "outros" },
+            { name: "Frajola", universe: "Looney Tunes", category: "outros" },
+            { name: "Piu-Piu", universe: "Looney Tunes", category: "outros" },
+            { name: "Taz", universe: "Looney Tunes", category: "outros" },
+            { name: "Papa-Léguas", universe: "Looney Tunes", category: "outros" },
+            { name: "Wile E. Coyote", universe: "Looney Tunes", category: "outros" },
+            { name: "Tom", universe: "Tom e Jerry", category: "outros" },
+            { name: "Jerry", universe: "Tom e Jerry", category: "outros" }
+        ];
+
+        let currentCategory = 'todos';
+        let isSpinning = false;
+
+        const characterNameEl = document.getElementById('characterName');
+        const characterUniverseEl = document.getElementById('characterUniverse');
+        const badgeCategoryEl = document.getElementById('badgeCategory');
+        const spinBtn = document.getElementById('spinBtn');
+        const statsInfo = document.getElementById('statsInfo');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        // Filtrar personagens com base na categoria ativa
+        function getFilteredCharacters() {
+            if (currentCategory === 'todos') {
+                return characters;
+            }
+            return characters.filter(c => c.category === currentCategory);
+        }
+
+        // Atualizar contadores e estatísticas
+        function updateStats() {
+            const list = getFilteredCharacters();
+            statsInfo.textContent = `Mostrando entre ${list.length} personagens disponíveis nesta categoria`;
+        }
+
+        // Lógica dos Botões de Filtro
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (isSpinning) return;
+                
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                currentCategory = btn.getAttribute('data-category');
+                badgeCategoryEl.textContent = btn.textContent.split(' ')[0];
+                updateStats();
+
+                // Resetar visor
+                characterNameEl.textContent = "Pronto!";
+                characterUniverseEl.textContent = "Gire para escolher";
+            });
+        });
+
+        // Efeito de Roleta (Sorteio Animado)
+        function spinRoulette() {
+            if (isSpinning) return;
+
+            const pool = getFilteredCharacters();
+            if (pool.length === 0) {
+                alert("Nenhum personagem encontrado nesta categoria!");
+                return;
+            }
+
+            isSpinning = true;
+            spinBtn.disabled = true;
+            spinBtn.style.opacity = '0.7';
+
+            let counter = 0;
+            const totalRounds = 25; // Número de trocas visuais antes de parar
+            const speed = 50; // Velocidade da animação em milissegundos
+
+            const interval = setInterval(() => {
+                // Sorteia aleatoriamente um personagem temporário para o efeito visual
+                const randomIndex = Math.floor(Math.random() * pool.length);
+                const tempChar = pool[randomIndex];
+
+                characterNameEl.textContent = tempChar.name;
+                characterUniverseEl.textContent = tempChar.universe;
+                
+                // Efeito sutil de pulso
+                characterNameEl.style.transform = `scale(${1 + (Math.random() * 0.1)})`;
+                characterNameEl.style.opacity = '0.8';
+
+                counter++;
+
+                if (counter >= totalRounds) {
+                    clearInterval(interval);
+                    
+                    // Escolhe o vencedor final definitivo
+                    const finalIndex = Math.floor(Math.random() * pool.length);
+                    const finalChar = pool[finalIndex];
+
+                    characterNameEl.textContent = finalChar.name;
+                    characterUniverseEl.textContent = finalChar.universe;
+                    
+                    // Restaura estilo final
+                    characterNameEl.style.transform = 'scale(1)';
+                    characterNameEl.style.opacity = '1';
+
+                    isSpinning = false;
+                    spinBtn.disabled = false;
+                    spinBtn.style.opacity = '1';
+                }
+            }, speed);
+        }
+
+        spinBtn.addEventListener('click', spinRoulette);
+
+        // Inicializar estatísticas
+        updateStats();
+    </script>
+</body>
+</html>
